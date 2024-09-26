@@ -1,0 +1,15 @@
+{
+  "name": "bsc-thesis-implementation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @google-cloud/functions-framework --target=testFunction",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.2"
+  }
+}
