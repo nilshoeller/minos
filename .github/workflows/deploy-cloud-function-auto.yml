@@ -30,10 +30,11 @@ jobs:
       # Step 4: Deploy Cloud Functions
       - name: Deploy Function
         run: |
-          gcloud functions deploy firstTestFunction \
+          gcloud functions deploy optimizationFunction1 \
+            --no-gen2
             --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
             --source=./ \
-            --entry-point=testFunction
+            --entry-point=optimizationFunction
       #       --region=YOUR_REGION \

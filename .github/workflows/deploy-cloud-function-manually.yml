@@ -27,13 +27,14 @@ jobs:
       # Step 4: Deploy Cloud Functions
       - name: Deploy Function
         run: |
-          gcloud functions deploy firstTestFunction \
+          gcloud functions deploy optimizationFunction1 \
+            --no-gen2
             --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
             --source=./ \
-            --entry-point=testFunction
+            --entry-point=optimizationFunction
       #       --region=YOUR_REGION \
       # Step 5: Example of using the output
-      - name: "test url"
-        run: 'curl "${{ steps.deploy.outputs.url }}"'
+      # - name: "test url"
+      #   run: 'curl "${{ steps.deploy.outputs.url }}"'
