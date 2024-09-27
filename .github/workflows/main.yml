@@ -19,17 +19,25 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: YOUR_PROJECT_ID
+          project_id: bsc-thesis-implementation
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
       # Step 3: Deploy Cloud Functions
       - name: Deploy Function
         run: |
-          gcloud functions deploy YOUR_FUNCTION_NAME \
-            --region=YOUR_REGION \
-            --runtime=YOUR_RUNTIME \
+          gcloud functions deploy firstTestFunction \
+            --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
-            --source=./path/to/function-directory \
-            --entry-point=FUNCTION_ENTRY_POINT
+            --source=./../../ \
+            --entry-point=testFunction
+      # - name: Deploy Function
+      #   run: |
+      #     gcloud functions deploy YOUR_FUNCTION_NAME \
+      #       --region=YOUR_REGION \
+      #       --runtime=YOUR_RUNTIME \
+      #       --trigger-http \
+      #       --allow-unauthenticated \
+      #       --source=./path/to/function-directory \
+      #       --entry-point=FUNCTION_ENTRY_POINT
