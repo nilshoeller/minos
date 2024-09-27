@@ -36,4 +36,5 @@ jobs:
             --allow-unauthenticated \
             --source=./ \
             --entry-point=optimizationFunction
+            --no-gen2
       #       --region=YOUR_REGION \

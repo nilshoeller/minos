@@ -33,6 +33,7 @@ jobs:
             --allow-unauthenticated \
             --source=./ \
             --entry-point=optimizationFunction
+            --no-gen2
       #       --region=YOUR_REGION \
       # Step 5: Example of using the output
       # - name: "test url"
