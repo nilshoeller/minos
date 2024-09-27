@@ -32,7 +32,7 @@ jobs:
             --trigger-http \
             --allow-unauthenticated \
             --source=./ \
-            --entry-point=optimizationFunction
+            --entry-point=optimizationFunction \
             --no-gen2
       #       --region=YOUR_REGION \
       # Step 5: Example of using the output
