@@ -1,4 +1,4 @@
-name: Deploy Cloud Functions
+name: Deploy Cloud Functions Automatically
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
 
       # Step 3: Set up Google Cloud SDK
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2 # Setup gcloud without credentials
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: bsc-thesis-implementation
 
@@ -34,14 +34,6 @@ jobs:
             --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
-            --source=./../../ \
+            --source=./ \
             --entry-point=testFunction
-      # - name: Deploy Function
-      #   run: |
-      #     gcloud functions deploy YOUR_FUNCTION_NAME \
       #       --region=YOUR_REGION \
-      #       --runtime=YOUR_RUNTIME \
-      #       --trigger-http \
-      #       --allow-unauthenticated \
-      #       --source=./path/to/function-directory \
-      #       --entry-point=FUNCTION_ENTRY_POINT
