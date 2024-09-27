@@ -28,7 +28,6 @@ jobs:
       - name: Deploy Function
         run: |
           gcloud functions deploy optimizationFunction1 \
-            --no-gen2
             --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
