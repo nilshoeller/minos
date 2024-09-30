@@ -7,11 +7,6 @@ const url =
   "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
 
 exports.optimizationFunction = async (req, res) => {
-  const retryCount = req.headers["x-retry-count"] || 0;
-
-  // Log the retry count for debugging purposes
-  // console.log(`Retry Count: ${retryCount}`);
-
   const startTime = Date.now();
   const result = matrixMult.performMatrixMultiplication();
 
@@ -20,7 +15,8 @@ exports.optimizationFunction = async (req, res) => {
   const maxDuration = 100;
 
   if (duration > maxDuration) {
-    const response = await instances.invokeNewInstance(req); // Try again, passing along the retry count
+    let retryCount = req.headers["retry-count"] || 0;
+    const response = await instances.invokeNewInstance(retryCount, url); // Try again, passing along the retry count
 
     return res.status(response.status).send({
       status: response.status,
