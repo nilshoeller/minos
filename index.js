@@ -8,8 +8,10 @@ exports.testFunction = (req, res) => {
 };
 
 // Problem: i do not have the URL before deploying
-const url = "";
 // const url = "https://REGION-PROJECT_ID.cloudfunctions.net/myFunction";
+// const url = "http://localhost:8080/";
+const url =
+  "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
 
 exports.optimizationFunction = async (req, res) => {
   const retryCount = req.headers["x-retry-count"] || 0;
@@ -22,15 +24,22 @@ exports.optimizationFunction = async (req, res) => {
 
   // Microbenchmark: Check how long the computation took
   const duration = Date.now() - startTime;
-  const maxDuration = 1000;
+  const maxDuration = 100;
 
   if (duration > maxDuration) {
     const response = await invokeNewInstance(req); // Try again, passing along the retry count
     // return res.status(500).send("Computation took too long, restarting...");
-    return res.status(response.status).send(response.message);
+    return res.status(response.status).send({
+      status: response.status,
+      message: response.message,
+    });
   }
 
-  res.status(200).send(`Computation successful. Result: ${result}`);
+  // res.status(200).send(`Computation successful. Result: ${result}`);
+  res.status(200).send({
+    status: 200,
+    message: "Computation successful",
+  });
 };
 
 function performMatrixMultiplication() {
@@ -78,13 +87,31 @@ async function invokeNewInstance(req) {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      let errorMessage = `HTTP error! Status: ${response.status}`;
+
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.message || errorMessage;
+      } catch (parseError) {
+        console.error("Failed to parse error response:", parseError);
+      }
+
+      return {
+        status: response.status,
+        message: errorMessage,
+      };
     }
 
-    const data = await response.json(); // Assuming the response is in JSON format
-    return { status: 200, message: data.message || "Success" }; // Return success message
+    let data = await response.json();
+    return {
+      status: data.status,
+      message: data.message || "Success",
+    };
   } catch (error) {
     console.error("Error:", error);
-    return { status: 500, message: "Error." }; // Handle error
+    return {
+      status: 500,
+      message: "Failed invoking new instance: " + error.message,
+    };
   }
 }
