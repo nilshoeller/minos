@@ -1,31 +1,22 @@
-const matrixMult = require("./lib/matrix-mult");
+const benchmark = require("./lib/benchmark");
 const instances = require("./lib/instances");
 
 // const url = "https://REGION-PROJECT_ID.cloudfunctions.net/myFunction";
-// const url = "http://localhost:8080/";
-const url =
-  "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
+const url = "http://localhost:8080/";
+// const url =
+// "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
 
 exports.optimizationFunction = async (req, res) => {
-  const startTime = Date.now();
-  const result = matrixMult.performMatrixMultiplication();
+  benchmarkPassed = benchmark.performBenchmark(0.1);
 
-  // Microbenchmark: Check how long the computation took
-  const duration = Date.now() - startTime;
-  const maxDuration = 100;
-
-  if (duration > maxDuration) {
-    let retryCount = req.headers["retry-count"] || 0;
-    const response = await instances.invokeNewInstance(retryCount, url); // Try again, passing along the retry count
-
-    return res.status(response.status).send({
-      status: response.status,
-      message: response.message,
+  if (benchmarkPassed) {
+    return res.status(200).send({
+      status: 200,
+      message: "Benchmark passed",
     });
+  } else {
+    return await instances.invokeNewInstance(req, res, url); // Try again, passing along the retry count
+    // to exit the process gracefully, but have to not wait for a promise
+    process.exit(0);
   }
-
-  res.status(200).send({
-    status: 200,
-    message: "Computation successful",
-  });
 };
