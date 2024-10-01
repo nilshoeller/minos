@@ -31,7 +31,7 @@ jobs:
             --runtime=nodejs20 \
             --trigger-http \
             --allow-unauthenticated \
-            --source=./ \
+            --source=./cloud-functions/ \
             --entry-point=optimizationFunction \
             --no-gen2
       #       --region=YOUR_REGION \
