@@ -7,7 +7,7 @@ const url = "http://localhost:8080/";
 // "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
 
 exports.optimizationFunction = async (req, res) => {
-  benchmarkPassed = benchmark.performBenchmark(0.001);
+  benchmarkPassed = benchmark.performBenchmark(0.1);
 
   if (benchmarkPassed) {
     return res.status(200).send({
@@ -15,8 +15,8 @@ exports.optimizationFunction = async (req, res) => {
       message: "Benchmark passed",
     });
   } else {
-    await instances.invokeNewInstance(req, res, url); // Try again, passing along the retry count
+    return await instances.invokeNewInstance(req, res, url); // Try again, passing along the retry count
     // to exit the process gracefully, but have to not wait for a promise
-    // process.exit(0);
+    process.exit(0);
   }
 };
