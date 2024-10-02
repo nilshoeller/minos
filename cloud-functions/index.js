@@ -9,7 +9,7 @@ const url = "http://localhost:8080/";
 
 const webhook_url = "http://localhost:3000/webhook";
 exports.optimizationFunction = async (req, res) => {
-  benchmarkPassed = benchmark.performBenchmark(0.001);
+  benchmarkPassed = benchmark.performBenchmark(100);
 
   if (benchmarkPassed) {
     // return res.status(200).send({
