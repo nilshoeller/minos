@@ -1,4 +1,6 @@
 function callCloudFunction() {
+  console.log("Sending request to cloud function.");
+
   fetch("http://localhost:8080/", {
     method: "GET",
   })
@@ -16,23 +18,21 @@ function callCloudFunction() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Function to fetch and update webhook data
-  async function fetchWebhookData() {
-    try {
-      const response = await fetch("/latest-webhook");
-      const data = await response.json();
+async function fetchData() {
+  const response = await fetch("/webhook-data");
+  const dataList = await response.json();
+  const listElement = document.getElementById("webhook-data-list");
+  listElement.innerHTML = ""; // Clear the list before appending
 
-      // Update the HTML to display the received data
-      document.getElementById("webhook-data").innerHTML = `
-          <p>Status: ${data.status}</p>
-          <p>Completed: ${data.completed || "N/A"}</p>
-        `;
-    } catch (error) {
-      console.error("Error fetching webhook data:", error);
-    }
-  }
+  dataList.forEach((data) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `Status: ${data.status}, Message: ${data.message}`;
 
-  // Poll the server every 5 seconds to get the latest webhook data
-  setInterval(fetchWebhookData, 5000);
-});
+    // JSON.stringify(data); // Adjust according to your data structure
+    listElement.appendChild(listItem);
+  });
+}
+// Initial call to fetch data
+fetchData();
+// Fetch data every 5 seconds
+setInterval(fetchData, 2500);

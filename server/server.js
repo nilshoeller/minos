@@ -3,9 +3,9 @@ const path = require("path");
 
 const app = express();
 const PORT = 3000;
-const CLOUD_FUNCS_URL = "http://localhost:8000";
+// const CLOUD_FUNCS_URL = "http://localhost:8000";
 
-let latestWebhookData = null;
+let dataList = [];
 
 app.use(express.json());
 app.use("/static", express.static("static"));
@@ -24,7 +24,7 @@ app.post("/webhook", (req, res) => {
   console.log("Webhook received:", payload);
 
   // You can process the payload here, e.g., save it to a database or trigger other actions
-  latestWebhookData = payload;
+  dataList.push(payload);
 
   // Respond to acknowledge receipt of the webhook
   res.status(200).send({
@@ -33,8 +33,8 @@ app.post("/webhook", (req, res) => {
 });
 
 // Endpoint to serve the latest webhook data
-app.get("/latest-webhook", (req, res) => {
-  res.status(200).json(latestWebhookData || { status: "No webhook data yet" });
+app.get("/webhook-data", (req, res) => {
+  res.json(dataList);
 });
 
 // Start the server
