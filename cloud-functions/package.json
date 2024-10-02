@@ -1,11 +1,10 @@
 {
-  "name": "bsc-thesis-implementation",
+  "name": "cloud-functions",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx @google-cloud/functions-framework --target=testFunction",
-    "start:optimizationFunction": "npx @google-cloud/functions-framework --target=optimizationFunction",
+    "start": "npx @google-cloud/functions-framework --target=optimizationFunction",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
