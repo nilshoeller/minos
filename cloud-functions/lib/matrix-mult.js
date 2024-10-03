@@ -2,6 +2,11 @@ module.exports = {
   performMatrixMultiplication,
 };
 
+/**
+ * Performs matrix multiplication on two randomly generated square matrices of a fixed size.
+ *
+ * @returns {number[][]} The resulting matrix from the multiplication of the two matrices.
+ */
 function performMatrixMultiplication() {
   const size = 100;
   const matrixA = Array(size)
