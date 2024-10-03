@@ -9,14 +9,9 @@ const url = "http://localhost:8080/";
 
 const webhook_url = "http://localhost:3000/webhook";
 exports.optimizationFunction = async (req, res) => {
-  benchmarkPassed = benchmark.performBenchmark(100);
+  const { benchmarkPassed, timeOfExecution } = benchmark.performBenchmark(100);
 
   if (benchmarkPassed) {
-    // return res.status(200).send({
-    //   status: 200,
-    //   message: "Benchmark passed",
-    // });
-
     serverCommunication.sendToWebhook(
       webhook_url,
       JSON.stringify({
@@ -25,8 +20,53 @@ exports.optimizationFunction = async (req, res) => {
       })
     );
   } else {
-    return await instances.invokeNewInstance(req, res, url, webhook_url); // Try again, passing along the retry count
-    // to exit the process gracefully, but have to not wait for a promise
-    // process.exit(0);
+    return await instances.invokeNewInstance(req, res, url, webhook_url);
   }
+};
+
+const { v4: uuidv4 } = require("uuid"); // For generating UUIDs
+const maxRetries = 3;
+
+exports.optimizationFunction2 = async (req, res) => {
+  let taskId = req.body.taskId || uuidv4();
+  let retryCount = req.body.retryCount || 0;
+
+  // Send 200 OK response immediately, including taskId in the response
+  res.status(200).json({
+    message: "Request received, processing...",
+    taskId: taskId,
+    retryCount: retryCount,
+  });
+
+  const { benchmarkPassed, timeOfExecution } =
+    benchmark.performBenchmark(0.001);
+
+  if (benchmarkPassed) {
+    // TODO: save time of execution with the taskId in firestore
+    console.log(
+      `Benchmark passed for taskId "${taskId}" in time (${timeOfExecution}).`
+    );
+    return;
+  }
+
+  if (retryCount < maxRetries) {
+    // Call the same cloud function again
+    try {
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          taskId: taskId,
+          retryCount: retryCount + 1,
+        }),
+      });
+      // .then((response) => response.json())
+      // .then((json) => console.log(json));
+    } catch (error) {
+      console.error(`Error re-invoking function for task ${taskId}:`, error);
+    }
+    return;
+  }
+
+  console.log(`Max retries reached for taskId "${taskId}".`);
 };

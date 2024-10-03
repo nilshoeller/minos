@@ -12,5 +12,8 @@ function performBenchmark(maxDuration) {
   // Microbenchmark: Check how long the computation took
   const duration = Date.now() - startTime;
 
-  return duration < maxDuration;
+  return {
+    benchmarkPassed: duration < maxDuration,
+    timeOfExecution: duration,
+  };
 }
