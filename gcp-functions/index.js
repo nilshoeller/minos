@@ -1,10 +1,12 @@
 const benchmark = require("./lib/benchmark");
 const instances = require("./lib/instances");
+const { v4: uuidv4 } = require("uuid"); // For generating UUIDs
 
 // const url = "https://REGION-PROJECT_ID.cloudfunctions.net/myFunction";
-// const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
-const url = "http://localhost:8080/";
-const { v4: uuidv4 } = require("uuid"); // For generating UUIDs
+const url =
+  "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1";
+// const url = "http://localhost:8080/";
+
 const maxRetries = 3;
 
 /**
@@ -17,8 +19,6 @@ const maxRetries = 3;
  * @param {number} [req.body.totalTimeOfExecution] - The total time of execution accumulated across retries. Defaults to 0 if not provided.
  *
  * @returns {void} Responds to the HTTP request with a status of 200 and a message indicating that the request has been received.
- *
- * @throws {Error} Throws an error if the benchmark fails and maximum retries are reached.
  */
 exports.optimizationFunction = async (req, res) => {
   let taskId = req.body.taskId || uuidv4();
@@ -31,10 +31,10 @@ exports.optimizationFunction = async (req, res) => {
     taskId: taskId,
   });
 
-  let { benchmarkPassed, timeOfExecution } = benchmark.performBenchmark(0.001);
+  let { benchmarkPassed, timeOfExecution } = benchmark.performBenchmark(100);
 
   if (benchmarkPassed) {
-    // TODO: save time of execution with the taskId in firestore
+    // TODO: save time of total execution and the taskId in firestore
     console.log(
       `Benchmark passed for taskId "${taskId}" in time (${totalTimeOfExecution}).`
     );
