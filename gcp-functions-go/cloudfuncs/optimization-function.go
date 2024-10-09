@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/lib"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/model"
@@ -16,6 +17,10 @@ const maxRetries = 3
 // const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunctionGo"
 
 const url = "http://localhost:8080/"
+
+func init() {
+	functions.HTTP("OptimizationFunction", OptimizationFunction)
+}
 
 // Handler for the optimization function
 func OptimizationFunction(w http.ResponseWriter, r *http.Request) {

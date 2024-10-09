@@ -6,13 +6,8 @@ import (
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
-	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
-	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/cloudfuncs"
+	_ "github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/cloudfuncs"
 )
-
-func init() {
-	functions.HTTP("OptimizationFunction", cloudfuncs.OptimizationFunction)
-}
 
 // Commands to start local testing
 // export FUNCTION_TARGET=OptimizationFunction
