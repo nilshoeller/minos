@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
-	_ "github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/cloudfuncs"
+	_ "github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo"
 )
 
 // Commands to start local testing

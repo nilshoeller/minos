@@ -1,4 +1,4 @@
-package cloudfuncs
+package gcpFunctionsGo
 
 import (
 	"encoding/json"
@@ -8,8 +8,8 @@ import (
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
-	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/lib"
-	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/model"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo/lib"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo/model"
 )
 
 const maxRetries = 3
