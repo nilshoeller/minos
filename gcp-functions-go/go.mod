@@ -1,4 +1,4 @@
-module github.com/nilshoeller/bsc-thesis-implementation
+module github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go
 
 go 1.21.5
 

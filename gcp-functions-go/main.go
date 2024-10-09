@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/nilshoeller/bsc-thesis-implementation/lib"
-	"github.com/nilshoeller/bsc-thesis-implementation/model"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/lib"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcp-functions-go/model"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
