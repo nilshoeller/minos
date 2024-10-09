@@ -1,5 +1,7 @@
 package lib
 
+import "math/rand"
+
 // performMatrixMultiplication performs a basic matrix multiplication.
 // For demonstration purposes, it multiplies two 100x100 matrices.
 func performMatrixMultiplication() {
@@ -13,8 +15,8 @@ func performMatrixMultiplication() {
 		b[i] = make([]int, size)
 		result[i] = make([]int, size)
 		for j := range a[i] {
-			a[i][j] = 1 // Fill with sample data
-			b[i][j] = 1 // Fill with sample data
+			a[i][j] = rand.Intn(100)
+			b[i][j] = rand.Intn(100)
 		}
 	}
 

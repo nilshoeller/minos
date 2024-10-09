@@ -4,9 +4,10 @@ import (
 	"time"
 )
 
-// performBenchmark performs a benchmark on the matrix multiplication function
-// to measure its execution time.
+// PerformBenchmark performs a micro-benchmark in milliseconds
 func PerformBenchmark(maxDuration time.Duration) (bool, float64) {
+	maxDuration = maxDuration * time.Millisecond
+
 	startTime := time.Now()
 
 	performMatrixMultiplication()

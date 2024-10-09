@@ -6,10 +6,10 @@ import (
 	"os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
-	_ "github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo"
+	_ "github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions"
 )
 
-// Commands to start local testing
+// Commands to start local testing:
 // export FUNCTION_TARGET=OptimizationFunction
 // go run main.go
 func main() {

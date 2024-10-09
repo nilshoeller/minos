@@ -1,22 +1,21 @@
-package gcpFunctionsGo
+package gcpfunctions
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
-	"github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo/lib"
-	"github.com/nilshoeller/bsc-thesis-implementation/gcpFunctionsGo/model"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/lib"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
 
 const maxRetries = 3
 
-// const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunctionGo"
+const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction"
 
-const url = "http://localhost:8080/"
+// const url = "http://localhost:8080/"
 
 func init() {
 	functions.HTTP("OptimizationFunction", OptimizationFunction)
@@ -24,8 +23,8 @@ func init() {
 
 // Handler for the optimization function
 func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
+	// Decode req-body
 	var req model.Request
-
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && err.Error() != "EOF" {
 		fmt.Println("test")
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -51,21 +50,24 @@ func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	var benchmarkResult model.BenchmarkResult
-
 	// Perform benchmark
-	benchmarkResult.BenchmarkPassed, benchmarkResult.TimeOfExecution = lib.PerformBenchmark(100 * time.Millisecond)
+	var benchmarkResult model.BenchmarkResult
+	benchmarkResult.BenchmarkPassed, benchmarkResult.TimeOfExecution = lib.PerformBenchmark(7)
+
+	// Update total time of execution
+	req.TotalTimeOfExecution += benchmarkResult.TimeOfExecution
 
 	if benchmarkResult.BenchmarkPassed {
-		fmt.Printf("Benchmark passed for taskId \"%s\" in time (%f).\n", req.TaskID, req.TotalTimeOfExecution)
+		lib.PrintLogs("Benchmark passed.", req)
+
 		return
 	}
 
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
-		req.TotalTimeOfExecution += benchmarkResult.TimeOfExecution
-		lib.InvokeNew(url, req.TaskID, req.RetryCount, req.TotalTimeOfExecution, benchmarkResult.TimeOfExecution)
+		lib.InvokeNew(url, req)
 		return
 	}
-	fmt.Printf("Max retries reached for taskId \"%s\".\n", req.TaskID)
+
+	lib.PrintLogs("Max retries reached.", req)
 }
