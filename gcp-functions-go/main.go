@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	"bsc-thesis-implementation/lib"
-	"bsc-thesis-implementation/model"
+	"github.com/nilshoeller/bsc-thesis-implementation/lib"
+	"github.com/nilshoeller/bsc-thesis-implementation/model"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -18,8 +18,9 @@ import (
 
 const maxRetries = 3
 
-// const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1"
-const url = "http://localhost:8080/"
+const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunctionGo"
+
+// const url = "http://localhost:8080/"
 
 func init() {
 	functions.HTTP("OptimizationFunction", OptimizationFunction)

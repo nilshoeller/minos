@@ -1,4 +1,4 @@
-module bsc-thesis-implementation
+module github.com/nilshoeller/bsc-thesis-implementation
 
 go 1.21.5
 
