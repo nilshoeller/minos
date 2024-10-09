@@ -31,10 +31,10 @@ jobs:
             --runtime=go121 \
             --trigger-http \
             --allow-unauthenticated \
-            --source=./gcp-functions-go/ \
+            --source=./gcp-functions-go/cloudfuncs/ \
             --entry-point=OptimizationFunction \
-            --no-gen2
-      #       --region=YOUR_REGION \
+            --no-gen2 \
+            --region=europe-west3
       # Step 5: Example of using the output
       # - name: "test url"
       #   run: 'curl "${{ steps.deploy.outputs.url }}"'

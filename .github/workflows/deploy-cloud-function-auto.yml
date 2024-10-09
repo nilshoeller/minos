@@ -39,4 +39,5 @@ jobs:
             --source=./gcp-functions/ \
             --entry-point=optimizationFunction \
             --no-gen2
+            --region=europe-west3
       #       --region=YOUR_REGION \
