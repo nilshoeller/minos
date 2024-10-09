@@ -32,11 +32,11 @@ jobs:
       # Step 4: Deploy Cloud Functions
       - name: Deploy Function
         run: |
-          gcloud functions deploy optimizationFunction1 \
-            --runtime=nodejs20 \
+          gcloud functions deploy optimizationFunction \
+            --runtime=go121 \
             --trigger-http \
             --allow-unauthenticated \
-            --source=./gcp-functions/ \
-            --entry-point=optimizationFunction \
-            --no-gen2
-      #       --region=YOUR_REGION \
+            --source=./gcpfunctions/ \
+            --entry-point=OptimizationFunction \
+            --no-gen2 \
+            --region=europe-west3
