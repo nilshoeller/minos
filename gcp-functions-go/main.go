@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bsc-thesis-implementation/lib"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -9,45 +8,29 @@ import (
 	"os"
 	"time"
 
-	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
-	"github.com/google/uuid"
+	"bsc-thesis-implementation/lib"
+	"bsc-thesis-implementation/model"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
+	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
+	"github.com/google/uuid"
 )
-
-func init() {
-	functions.HTTP("OptimizationFunction", OptimizationFunction)
-}
 
 const maxRetries = 3
 
 // const url = "https://us-central1-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction1"
 const url = "http://localhost:8080/"
 
-// Response structure for the initial HTTP response
-type Response struct {
-	Message string `json:"message"`
-	TaskID  string `json:"taskId"`
-}
-
-// Request structure for the incoming HTTP request
-type Request struct {
-	TaskID               string  `json:"taskId,omitempty"`
-	RetryCount           int     `json:"retryCount,omitempty"`
-	TotalTimeOfExecution float64 `json:"totalTimeOfExecution,omitempty"`
-}
-
-// BenchmarkResult structure to hold the result of the benchmarking
-type BenchmarkResult struct {
-	BenchmarkPassed bool
-	TimeOfExecution time.Duration
+func init() {
+	functions.HTTP("OptimizationFunction", OptimizationFunction)
 }
 
 // Handler for the optimization function
 func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
-	var req Request
+	var req model.Request
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && err.Error() != "EOF" {
+		fmt.Println("test")
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -63,7 +46,7 @@ func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Immediate response to the client
-	response := Response{
+	response := model.Response{
 		Message: "Request received, processing...",
 		TaskID:  req.TaskID,
 	}
@@ -71,23 +54,28 @@ func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// Perform benchmark
-	benchmarkPassed, timeOfExecution := lib.PerformBenchmark(100 * time.Millisecond)
+	var benchmarkResult model.BenchmarkResult
 
-	if benchmarkPassed {
+	// Perform benchmark
+	benchmarkResult.BenchmarkPassed, benchmarkResult.TimeOfExecution = lib.PerformBenchmark(100 * time.Millisecond)
+
+	if benchmarkResult.BenchmarkPassed {
 		fmt.Printf("Benchmark passed for taskId \"%s\" in time (%f).\n", req.TaskID, req.TotalTimeOfExecution)
 		return
 	}
 
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
-		req.TotalTimeOfExecution += timeOfExecution
-		lib.InvokeNew(url, req.TaskID, req.RetryCount, req.TotalTimeOfExecution, timeOfExecution)
+		req.TotalTimeOfExecution += benchmarkResult.TimeOfExecution
+		lib.InvokeNew(url, req.TaskID, req.RetryCount, req.TotalTimeOfExecution, benchmarkResult.TimeOfExecution)
 		return
 	}
 	fmt.Printf("Max retries reached for taskId \"%s\".\n", req.TaskID)
 }
 
+// Commands to start local testing
+// export FUNCTION_TARGET=OptimizationFunction
+// go run main.go
 func main() {
 	// Use PORT environment variable, or default to 8080.
 	port := "8080"
