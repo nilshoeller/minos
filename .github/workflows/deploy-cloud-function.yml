@@ -1,4 +1,4 @@
-name: Deploy Cloud Functions Automatically
+name: Deploy Cloud Functions
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "gcpfunctions/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
