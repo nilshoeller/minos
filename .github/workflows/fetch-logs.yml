@@ -1,0 +1,42 @@
+name: Fetch Cloud Function Logs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  fetch_logs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12" # Specify the Python version you need
+
+      - name: Install dependencies
+        run: |
+          cd ./logs
+          pip install pipenv
+          pipenv install
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Run log fetching script
+        run: |
+          cd ./logs
+          pipenv run python fetch_logs.py
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: cloud-function-logs
+          path: logs/*.csv # Path to the logs saved in CSV format inside the 'logs' folder
