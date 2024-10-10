@@ -1,9 +1,9 @@
 name: Fetch Cloud Function Logs
 
 on:
-  push:
-    branches:
-      - main
+  #   push:
+  #     branches:
+  #       - main
   workflow_dispatch:
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
           cd ./logs
           pipenv run python fetch_logs.py
 
-      - name: Upload logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: cloud-function-logs
-          path: logs/*.csv # Path to the logs saved in CSV format inside the 'logs' folder
+    #   - name: Upload logs
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: cloud-function-logs
+    #       path: logs/*.csv # Path to the logs saved in CSV format inside the 'logs' folder
