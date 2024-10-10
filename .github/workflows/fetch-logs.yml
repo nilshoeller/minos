@@ -43,7 +43,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          cd ./logs/logs_archive/
+          cd ./logs/
           git config user.name "GitHub Actions"
           git config user.email "action@github.com"
           git add logs_archive/*.csv  # Adjust if you need to add specific files
