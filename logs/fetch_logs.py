@@ -53,7 +53,7 @@ def save_logs_to_csv(logs, folder_name='logs_archive'):
 
 if __name__ == "__main__":
     # Replace with your Cloud Function name and Google Cloud project ID
-    function_name = "optimizationFunction"
+    function_name = "optimizedFunction"
     project_id = "bsc-thesis-implementation"
 
     # Fetch and print logs

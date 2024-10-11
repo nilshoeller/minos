@@ -2,7 +2,6 @@ package gcpfunctions
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -13,20 +12,19 @@ import (
 
 const maxRetries = 3
 
-const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizationFunction"
+const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction"
 
 // const url = "http://localhost:8080/"
 
 func init() {
-	functions.HTTP("OptimizationFunction", OptimizationFunction)
+	functions.HTTP("OptimizedFunction", OptimizedFunction)
 }
 
 // Handler for the optimization function
-func OptimizationFunction(w http.ResponseWriter, r *http.Request) {
+func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	// Decode req-body
 	var req model.Request
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && err.Error() != "EOF" {
-		fmt.Println("test")
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}

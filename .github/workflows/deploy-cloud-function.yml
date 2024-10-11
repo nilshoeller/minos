@@ -31,13 +31,24 @@ jobs:
           project_id: bsc-thesis-implementation
 
       # Step 4: Deploy Cloud Functions
-      - name: Deploy Function
+      - name: Deploy Optimized Function
         run: |
-          gcloud functions deploy optimizationFunction \
+          gcloud functions deploy optimizedFunction \
             --runtime=go121 \
             --trigger-http \
             --allow-unauthenticated \
             --source=./gcpfunctions/ \
-            --entry-point=OptimizationFunction \
+            --entry-point=OptimizedFunction \
+            --no-gen2 \
+            --region=europe-west3
+
+      - name: Deploy Baseline Function
+        run: |
+          gcloud functions deploy baselineFunction \
+            --runtime=go121 \
+            --trigger-http \
+            --allow-unauthenticated \
+            --source=./gcpfunctions/ \
+            --entry-point=baselineFunction \
             --no-gen2 \
             --region=europe-west3
