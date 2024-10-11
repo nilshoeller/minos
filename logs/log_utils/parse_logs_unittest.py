@@ -20,6 +20,7 @@ class TestLogExtractor(unittest.TestCase):
             Log(None, "Time: 10.5", datetime.now()),
             Log(None, "Retries: 1", datetime.now()),
             Log(None, "=== END LOG ===", datetime.now()),
+            Log("DEBUG", "Function execution took 8 ms, finished with status code: 200", datetime.now()),
 
             Log(None, "=== START LOG ===", datetime.now()),
             Log(None, "Benchmark passed", datetime.now()),
@@ -27,6 +28,7 @@ class TestLogExtractor(unittest.TestCase):
             Log(None, "Time: 0.512", datetime.now()),
             Log(None, "Retries: 0", datetime.now()),
             Log(None, "=== END LOG ===", datetime.now()),
+            Log("DEBUG", "Function execution took 9 ms, finished with status code: 200", datetime.now()),
 
             Log(None, "=== START LOG ===", datetime.now()),
             Log(None, "Max retries reached", datetime.now()),
@@ -34,32 +36,36 @@ class TestLogExtractor(unittest.TestCase):
             Log(None, "Time: 30.7", datetime.now()),
             Log(None, "Retries: 3", datetime.now()),
             Log(None, "=== END LOG ===", datetime.now()),
+            Log("DEBUG", "Function execution took 10 ms, finished with status code: 200", datetime.now()),
         ]
         expected_output = [
             # Expected output for the sample logs
             {
             "count": 0,
-            "timestamp": logs[0].timestamp.isoformat(),
+            "timestamp": logs[6].timestamp.isoformat(),
             "log": "Benchmark passed",
             "taskid": "123",
-            "time": 10.5,
+            "totalbenchmarktime": 10.5,
             "retries": 1,
+            "functionexectime": 8.0,
         },
         {
             "count": 1,
-            "timestamp": logs[6].timestamp.isoformat(),
+            "timestamp": logs[13].timestamp.isoformat(),
             "log": "Benchmark passed",
             "taskid": "321",
-            "time": 0.512,
+            "totalbenchmarktime": 0.512,
             "retries": 0,
+            "functionexectime": 9.0,
         },
         {
             "count": 2,
-            "timestamp": logs[12].timestamp.isoformat(),
+            "timestamp": logs[20].timestamp.isoformat(),
             "log": "Max retries reached",
             "taskid": "456",
-            "time": 30.7,
+            "totalbenchmarktime": 30.7,
             "retries": 3,
+            "functionexectime": 10.0,
         }
         ]
         result = parse_logs.parse_between_markers(logs)

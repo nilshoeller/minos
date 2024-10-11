@@ -12,11 +12,10 @@ from log_utils import parse_logs
 def get_cloud_function_logs(function_name, project_id, limit=10):
     # Create a client to access Cloud Logging
     client = google.cloud.logging.Client(project=project_id)
-    # Set up the logger filter to retrieve logs only for your Cloud Function
     logger_filter = (
         f'resource.type="cloud_function" '
         f'resource.labels.function_name="{function_name}" '
-        f'severity:"DEFAULT"'
+        f'(severity:"DEFAULT" OR severity:"DEBUG")'
     )
     # Fetch logs
     entries = client.list_entries(filter_=logger_filter, order_by=ASCENDING, page_size=limit)
