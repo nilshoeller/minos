@@ -14,7 +14,6 @@ func PrintLogs(title string, req model.Request) {
 	fmt.Println(startLogSequence)
 	fmt.Println(title)
 	fmt.Printf("TaskId: %s\n", req.TaskID)
-	fmt.Printf("Time: %f\n", req.TotalTimeOfExecution)
 	fmt.Printf("Retries: %d\n", req.RetryCount)
 	fmt.Println(endLogSequence)
 }

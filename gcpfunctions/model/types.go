@@ -8,9 +8,8 @@ type Response struct {
 
 // Request structure for the incoming HTTP request
 type Request struct {
-	TaskID               string  `json:"taskId,omitempty"`
-	RetryCount           int     `json:"retryCount,omitempty"`
-	TotalTimeOfExecution float64 `json:"totalTimeOfExecution,omitempty"`
+	TaskID     string `json:"taskId,omitempty"`
+	RetryCount int    `json:"retryCount,omitempty"`
 }
 
 // BenchmarkResult structure to hold the result of the benchmarking

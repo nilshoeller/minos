@@ -10,7 +10,7 @@ import (
 )
 
 // Commands to start local testing:
-// export FUNCTION_TARGET=OptimizationFunction
+// export FUNCTION_TARGET=OptimizedFunction
 // go run main.go
 func main() {
 	// Use PORT environment variable, or default to 8080.
