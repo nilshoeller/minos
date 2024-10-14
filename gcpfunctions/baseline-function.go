@@ -3,6 +3,7 @@ package gcpfunctions
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
@@ -36,5 +37,8 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	lib.PrintLogs("Starting execution.", req)
+	// Simulate downloading for 10 milliseconds
+	time.Sleep(downloadingDuration * time.Millisecond)
+
+	lib.PrintLogs("Execution finished.", req)
 }
