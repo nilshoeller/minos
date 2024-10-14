@@ -14,13 +14,11 @@ def parse_between_markers(logs):
         "timestamp": None,
         "log": None,
         "taskid": None,
-        "totalbenchmarktime": None,
         "retries": None,
         "functionexectime": None,
     }
 
     for log in logs:
-        # print(f"severity: {log.severity} - log: {log.payload}")
         # print-statements in google cloud functions are marked with DEFAULT/None in the LOGS
         if log.severity == None:    
             if log.payload == start_marker:
@@ -37,9 +35,6 @@ def parse_between_markers(logs):
                     continue
                 if "TaskId" in log.payload:
                     new_log["taskid"] = log.payload.replace("TaskId: ", "")
-                    continue
-                if "Time" in log.payload:
-                    new_log["totalbenchmarktime"] = float(log.payload.replace("Time: ", ""))
                     continue
                 if "Retries" in log.payload:
                     new_log["retries"] = int(log.payload.replace("Retries: ", ""))
@@ -59,7 +54,6 @@ def parse_between_markers(logs):
                 "timestamp": None,
                 "log": None,
                 "taskid": None,
-                "totalbenchmarktime": None,
                 "retries": None,
                 "functionexectime": None,
                 }
