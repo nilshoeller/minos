@@ -52,3 +52,14 @@ jobs:
             --entry-point=BaselineFunction \
             --no-gen2 \
             --region=europe-west3
+
+      - name: Deploy Execute-Benchmark Function
+        run: |
+          gcloud functions deploy executeBenchmark \
+            --runtime=go121 \
+            --trigger-http \
+            --allow-unauthenticated \
+            --source=./gcpfunctions/ \
+            --entry-point=ExecuteBenchmark \
+            --no-gen2 \
+            --region=europe-west3

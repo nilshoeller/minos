@@ -17,3 +17,9 @@ type BenchmarkResult struct {
 	BenchmarkPassed bool
 	TimeOfExecution float64
 }
+
+// Response structure for the initial HTTP response
+type BenchmarkResponse struct {
+	Message  string  `json:"message"`
+	Duration float64 `json:"duration"`
+}
