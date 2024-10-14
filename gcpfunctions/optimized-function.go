@@ -17,6 +17,9 @@ const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/o
 
 const maxRetries = 3
 
+const benchmarkMaxDuration = 5
+const downloadingDuration = 10
+
 var benchmarkPassed = false
 
 func init() {
@@ -48,10 +51,13 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// Concurrently start performing the benchmark (NOTE: if benchmarkPassed already = true, we know that instance is fast)
-	go lib.PerformBenchmark(5, &benchmarkPassed)
+	// If instance is fast and don't have to perform the benchmark
+	if !benchmarkPassed {
+		// Concurrently perform the benchmark
+		go lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
+	}
 	// Simulate downloading for 10 milliseconds
-	time.Sleep(10 * time.Millisecond)
+	time.Sleep(downloadingDuration * time.Millisecond)
 
 	if benchmarkPassed {
 		lib.PrintLogs("Benchmark passed", req)
