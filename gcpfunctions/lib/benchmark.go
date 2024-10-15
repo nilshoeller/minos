@@ -30,5 +30,5 @@ func PermormBenchmarkReturnDuration() float64 {
 	// Measure how long the computation took
 	duration := time.Since(startTime)
 
-	return float64(duration)
+	return float64(duration.Seconds())
 }

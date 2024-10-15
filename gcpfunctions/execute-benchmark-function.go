@@ -2,6 +2,7 @@ package gcpfunctions
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -30,7 +31,7 @@ func ExecuteBenchmark(w http.ResponseWriter, r *http.Request) {
 	benchmarkDuration := lib.PermormBenchmarkReturnDuration()
 	// Immediate response to the client
 	response := model.BenchmarkResponse{
-		Message:  "Performed benchmark.",
+		Message:  fmt.Sprintf("Performed benchmark in %.9f Seconds", benchmarkDuration),
 		Duration: benchmarkDuration,
 	}
 	w.Header().Set("Content-Type", "application/json")
