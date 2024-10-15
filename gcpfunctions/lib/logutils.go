@@ -17,3 +17,10 @@ func PrintLogs(title string, req model.Request) {
 	fmt.Printf("Retries: %d\n", req.RetryCount)
 	fmt.Println(endLogSequence)
 }
+
+func PrintBaselineLogs(title string, req model.Request) {
+	fmt.Println(startLogSequence)
+	fmt.Println(title)
+	fmt.Printf("TaskId: %s\n", req.TaskID)
+	fmt.Println(endLogSequence)
+}

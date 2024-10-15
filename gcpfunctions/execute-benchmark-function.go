@@ -3,7 +3,6 @@ package gcpfunctions
 import (
 	"encoding/json"
 	"net/http"
-	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
@@ -12,11 +11,11 @@ import (
 )
 
 func init() {
-	functions.HTTP("BaselineFunction", BaselineFunction)
+	functions.HTTP("ExecuteBenchmark", ExecuteBenchmark)
 }
 
-// Handler for the optimization function
-func BaselineFunction(w http.ResponseWriter, r *http.Request) {
+// Handler for the execute benchmark
+func ExecuteBenchmark(w http.ResponseWriter, r *http.Request) {
 	// Decode req-body
 	var req model.Request
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && err.Error() != "EOF" {
@@ -28,17 +27,13 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 		req.TaskID = uuid.NewString()
 	}
 
+	benchmarkDuration := lib.PermormBenchmarkReturnDuration()
 	// Immediate response to the client
-	response := model.Response{
-		Message: "Request received, processing...",
-		TaskID:  req.TaskID,
+	response := model.BenchmarkResponse{
+		Message:  "Performed benchmark.",
+		Duration: benchmarkDuration,
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
-
-	// Simulate downloading for 10 milliseconds
-	time.Sleep(downloadingDuration * time.Millisecond)
-
-	lib.PrintBaselineLogs("Execution finished.", req)
 }

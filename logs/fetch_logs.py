@@ -1,66 +1,46 @@
-import json
-import csv
-import os
-from datetime import datetime
-
 import google.cloud.logging # type: ignore
 from google.cloud.logging import ASCENDING # type: ignore
 # from google.cloud.logging import DESCENDING # type: ignore
 
 from log_utils import parse_logs
+from log_utils import csv_log_saver
+from enum import Enum
 
-def get_cloud_function_logs(function_name, project_id, limit=10):
+PROJECT_ID = "bsc-thesis-implementation"
+
+class CloudFunction(Enum):
+    OPTIMIZED = "optimizedFunction"
+    BASELINE = "baselineFunction"
+
+def get_cloud_function_logs(function_type: CloudFunction, project_id: str, limit: int):
     # Create a client to access Cloud Logging
     client = google.cloud.logging.Client(project=project_id)
     logger_filter = (
         f'resource.type="cloud_function" '
-        f'resource.labels.function_name="{function_name}" '
+        f'resource.labels.function_name="{function_type.value}" '
         f'(severity:"DEFAULT" OR severity:"DEBUG")'
     )
     # Fetch logs
     entries = client.list_entries(filter_=logger_filter, order_by=ASCENDING, page_size=limit)
-
     # print("COUNT: ", len(list(entries)))
-    print(f"Logs for Cloud Function: {function_name}\n")
 
-    return parse_logs.parse_between_markers(entries)
-
-def save_logs_to_csv(logs, folder_name='logs_archive'):
-    # Create a folder to store the CSV file if it doesn't exist
-    os.makedirs(folder_name, exist_ok=True)
+    print(f"Logs for Cloud Function: {function_type.value}\n")
+    if function_type == CloudFunction.OPTIMIZED:
+        return parse_logs.parse_optimized_func(entries)
+    if function_type == CloudFunction.BASELINE:
+        return parse_logs.parse_baseline_func(entries)
     
-    # Get the current date for the file name
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    file_name = f'cloud_function_logs_{current_date}.csv'  # Include the date in the file name
+    return []
 
-
-    # Define the full path for the CSV file
-    csv_file_path = os.path.join(folder_name, file_name)
-
-    # Get the keys for the CSV header from the first log entry
-    if logs:
-        header = logs[0].keys()  # Assumes all log entries have the same structure
-
-        # Write logs to a CSV file
-        with open(csv_file_path, mode='w', newline='') as csv_file:
-            writer = csv.DictWriter(csv_file, fieldnames=header)
-            writer.writeheader()
-            writer.writerows(logs)
-
-        print(f"Logs saved to {csv_file_path}")
-    else:
-        print("No logs to save.")
 
 if __name__ == "__main__":
-    # Replace with your Cloud Function name and Google Cloud project ID
-    function_name = "optimizedFunction"
-    project_id = "bsc-thesis-implementation"
-
     # Fetch and print logs
-    logs = get_cloud_function_logs(function_name, project_id, limit=100)
-
+    optimized_logs = get_cloud_function_logs(CloudFunction.OPTIMIZED, PROJECT_ID, 100)
+    baseline_logs = get_cloud_function_logs(CloudFunction.BASELINE, PROJECT_ID, 100)
+    
     # # Print logs and return them as JSON
-    # print(json.dumps(logs, indent=2))  # Pretty print JSON
+    # print(json.dumps(optimized_logs, indent=2))  # Pretty print JSON
 
     # Save logs to CSV
-    save_logs_to_csv(logs)
+    csv_log_saver.save_to_csv(CloudFunction.OPTIMIZED.value, optimized_logs)
+    csv_log_saver.save_to_csv(CloudFunction.BASELINE.value, baseline_logs)
