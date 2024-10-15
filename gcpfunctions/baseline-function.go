@@ -40,5 +40,5 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	// Simulate downloading for 10 milliseconds
 	time.Sleep(downloadingDuration * time.Millisecond)
 
-	lib.PrintLogs("Execution finished.", req)
+	lib.PrintBaselineLogs("Execution finished.", req)
 }
