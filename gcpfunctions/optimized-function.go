@@ -17,8 +17,9 @@ const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/o
 
 const maxRetries = 3
 
-const benchmarkMaxDuration = 5
-const downloadingDuration = 10
+// med: 0.004192012 Seconds
+const benchmarkMaxDuration = 4200 * time.Microsecond // = 4.2 Milliseconds
+const downloadingDuration = 5
 
 var benchmarkPassed = false
 

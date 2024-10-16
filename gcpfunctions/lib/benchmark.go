@@ -6,8 +6,6 @@ import (
 
 // PerformBenchmark performs a micro-benchmark in milliseconds
 func PerformBenchmark(maxDuration time.Duration, benchmarkPassed *bool) {
-	maxDuration = maxDuration * time.Millisecond
-
 	startTime := time.Now()
 
 	performMatrixMultiplication()

@@ -9,14 +9,15 @@ const totalDurationTrend = new Trend("total_duration");
 const reqCounter = new Counter("reqCounter");
 
 export const options = {
-  vus: 2,
-  duration: "30s",
+  vus: 1,
+  duration: "120s",
   thresholds: {
     total_duration: ["avg < 0.06", "p(95) < 0.08"],
     reqCounter: ["count>=0"],
   },
 };
 
+// Run with: k6 run script.js
 export default function () {
   const response = http.get(url);
 
@@ -35,13 +36,18 @@ export default function () {
     reqCounter.add(1);
   }
 
-  sleep(5);
+  sleep(10);
 }
 
-// export function handleSummary(data) {
-//   console.log("HANDLE SUMMARY");
+export function handleSummary(data) {
+  console.log("HANDLE SUMMARY");
 
-//   return {
-//     "summary.json": JSON.stringify(data),
-//   };
-// }
+  const summary = {
+    reqCounter: data.metrics.reqCounter,
+    total_duration: data.metrics.total_duration,
+  };
+
+  return {
+    "summary.json": JSON.stringify(summary),
+  };
+}
