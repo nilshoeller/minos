@@ -14,7 +14,7 @@ import (
 // bucket := "bucket-name"
 // object := "object-name"
 // destFileName := "file.txt"
-func DownloadFile(w io.Writer, bucket, object string, destFileName string) error {
+func DownloadFile(bucket, object string, destFileName string) error {
 	ctx := context.Background()
 	client, err := storage.NewClient(ctx)
 	if err != nil {
@@ -44,7 +44,7 @@ func DownloadFile(w io.Writer, bucket, object string, destFileName string) error
 		return fmt.Errorf("f.Close: %w", err)
 	}
 
-	fmt.Fprintf(w, "Blob %v downloaded to local file %v\n", object, destFileName)
+	// fmt.Fprintln("Blob %v downloaded to local file %v\n", object, destFileName)
 
 	return nil
 

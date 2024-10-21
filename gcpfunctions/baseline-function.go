@@ -49,18 +49,19 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	objectName := "test.txt"
 	destinationFileName := "/tmp/test-downloaded.txt"
 
-	if err := lib.DownloadFile(nil, bucketName, objectName, destinationFileName); err != nil {
-		fmt.Println(fmt.Errorf("downloading file: %w", err))
+	if err := lib.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
+		fmt.Println("downloading file: ", err)
 		return
 	}
 
 	// Re-open the file to read its content and print it
 	fileContent, err := os.ReadFile(destinationFileName)
 	if err != nil {
-		fmt.Println(fmt.Errorf("os.ReadFile: %w", err))
+		fmt.Println("os.ReadFile: ", err)
 		return
 	}
-	// Print the file content to the provided writer (typically stdout)
-	fmt.Fprintf(w, "File content:\n%s\n", string(fileContent))
+
+	// Print the file content to the logs
+	fmt.Println("File content:\n", string(fileContent))
 
 }
