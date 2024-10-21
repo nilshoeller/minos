@@ -2,7 +2,9 @@ package gcpfunctions
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -41,4 +43,24 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	time.Sleep(downloadingDuration * time.Millisecond)
 
 	lib.PrintBaselineLogs("Execution finished.", req)
+
+	// download from cloud storage and print document
+	bucketName := "test-bucket-myfunction"
+	objectName := "test.txt"
+	destinationFileName := "/tmp/test-downloaded.txt"
+
+	if err := lib.DownloadFile(nil, bucketName, objectName, destinationFileName); err != nil {
+		fmt.Println(fmt.Errorf("downloading file: %w", err))
+		return
+	}
+
+	// Re-open the file to read its content and print it
+	fileContent, err := os.ReadFile(destinationFileName)
+	if err != nil {
+		fmt.Println(fmt.Errorf("os.ReadFile: %w", err))
+		return
+	}
+	// Print the file content to the provided writer (typically stdout)
+	fmt.Fprintf(w, "File content:\n%s\n", string(fileContent))
+
 }
