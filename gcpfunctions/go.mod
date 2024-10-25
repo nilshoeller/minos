@@ -3,6 +3,7 @@ module github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions
 go 1.21.5
 
 require (
+	cloud.google.com/go/storage v1.45.0
 	github.com/GoogleCloudPlatform/functions-framework-go v1.9.0
 	github.com/google/uuid v1.6.0
 )
@@ -16,7 +17,6 @@ require (
 	cloud.google.com/go/functions v1.19.0 // indirect
 	cloud.google.com/go/iam v1.2.1 // indirect
 	cloud.google.com/go/monitoring v1.21.0 // indirect
-	cloud.google.com/go/storage v1.45.0 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.24.1 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.48.1 // indirect
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.48.1 // indirect
