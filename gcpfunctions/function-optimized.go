@@ -51,7 +51,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// If instance we already know instance is fast -> don't have to perform the benchmark
+	// If we already know instance is fast -> don't have to perform the benchmark
 	if !benchmarkPassed {
 		// Concurrently perform the benchmark
 		go lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
