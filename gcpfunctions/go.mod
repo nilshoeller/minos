@@ -1,11 +1,14 @@
 module github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions
 
-go 1.21.5
+go 1.22
+
+toolchain go1.22.8
 
 require (
 	cloud.google.com/go/storage v1.45.0
 	github.com/GoogleCloudPlatform/functions-framework-go v1.9.0
 	github.com/google/uuid v1.6.0
+	gonum.org/v1/gonum v0.15.1
 )
 
 require (

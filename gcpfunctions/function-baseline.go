@@ -4,11 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
-	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/db"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/lib"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
@@ -39,29 +38,13 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// Simulate downloading for 10 milliseconds
-	time.Sleep(downloadingDuration * time.Millisecond)
-
-	lib.PrintBaselineLogs("Execution finished.", req)
-
-	// download from cloud storage and print document
-	bucketName := "test-bucket-myfunction"
-	objectName := "test.txt"
-	destinationFileName := "/tmp/test-downloaded.txt"
-
-	if err := lib.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
+	// Download from cloud storage
+	if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
 		fmt.Println("downloading file: ", err)
 		return
 	}
 
-	// Re-open the file to read its content and print it
-	fileContent, err := os.ReadFile(destinationFileName)
-	if err != nil {
-		fmt.Println("os.ReadFile: ", err)
-		return
-	}
+	maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 
-	// Print the file content to the logs
-	fmt.Println("File content:\n", string(fileContent))
-
+	lib.PrintBaselineLogs("Execution finished.", req, maxTemp, minTemp, meanTemp)
 }
