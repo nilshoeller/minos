@@ -22,8 +22,8 @@ func PrintBaselineLogs(title string, req model.Request, maxTemp, minTemp, meanTe
 	fmt.Println(startLogSequence)
 	fmt.Println(title)
 	fmt.Printf("TaskId: %s\n", req.TaskID)
-	fmt.Printf("Predicted MAX temperature: %2.f", maxTemp)
-	fmt.Printf("Predicted MIN temperature: %2.f", minTemp)
-	fmt.Printf("Predicted MEAN temperature: %2.f", meanTemp)
+	fmt.Printf("Predicted MAX temperature: %.2f°C\n", maxTemp)
+	fmt.Printf("Predicted MIN temperature: %.2f°C\n", minTemp)
+	fmt.Printf("Predicted MEAN temperature: %.2f°C\n", meanTemp)
 	fmt.Println(endLogSequence)
 }
