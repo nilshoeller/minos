@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
@@ -15,6 +14,10 @@ import (
 func init() {
 	functions.HTTP("BaselineFunction", BaselineFunction)
 }
+
+const bucketName = "bsc-implementation-bucket"
+const objectName = "historic-weather-data-1950.csv"
+const destinationFileName = "/tmp/historic-weather-data-1950.csv"
 
 // Handler for the optimization function
 func BaselineFunction(w http.ResponseWriter, r *http.Request) {
@@ -38,31 +41,13 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// Simulate downloading for 10 milliseconds
-	time.Sleep(downloadingDuration * time.Millisecond)
-
-	lib.PrintBaselineLogs("Execution finished.", req)
-
 	// download from cloud storage and print document
-	bucketName := "bsc-implementation-bucket"
-	objectName := "historic-weather-data-1950.csv"
-	destinationFileName := "/tmp/historic-weather-data-1950.csv"
-
 	if err := lib.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
 		fmt.Println("downloading file: ", err)
 		return
 	}
 
-	lib.ReadCsvAndPerformLR(destinationFileName)
+	maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 
-	// // Re-open the file to read its content and print it
-	// fileContent, err := os.ReadFile(destinationFileName)
-	// if err != nil {
-	// 	fmt.Println("os.ReadFile: ", err)
-	// 	return
-	// }
-
-	// // Print the file content to the logs
-	// fmt.Println("File content:\n", string(fileContent))
-
+	lib.PrintBaselineLogs("Execution finished.", req, maxTemp, minTemp, meanTemp)
 }

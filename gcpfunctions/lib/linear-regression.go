@@ -69,7 +69,7 @@ func readCSV(file *os.File) ([]float64, []float64, []float64, []float64) {
 	return days, tempMax, tempMin, tempMin
 }
 
-func performLinearRegression(days, temp []float64, text string) {
+func performLinearRegression(days, temp []float64) float64 {
 	// Perform linear regression
 	b, a := stat.LinearRegression(days, temp, nil, false)
 
@@ -77,10 +77,11 @@ func performLinearRegression(days, temp []float64, text string) {
 
 	// Predict temperature for the next day
 	predictedTemp := a*nextDay + b
-	log.Printf("%s: %.2f°C\n", text, predictedTemp)
+	// log.Printf("%s: %.2f°C\n", text, predictedTemp)
+	return predictedTemp
 }
 
-func ReadCsvAndPerformLR(destFileName string) {
+func ReadCsvAndPerformLR(destFileName string) (float64, float64, float64) {
 	// Open CSV file
 	file, err := os.Open(destFileName)
 	if err != nil {
@@ -90,7 +91,9 @@ func ReadCsvAndPerformLR(destFileName string) {
 	days, tempMax, tempMin, tempMean := readCSV(file)
 	file.Close()
 
-	performLinearRegression(days, tempMax, "Predicted MAX temperature for next day")
-	performLinearRegression(days, tempMin, "Predicted MIN temperature for next day")
-	performLinearRegression(days, tempMean, "Predicted MEAN temperature for next day")
+	maxTemp := performLinearRegression(days, tempMax)
+	minTemp := performLinearRegression(days, tempMin)
+	meanTemp := performLinearRegression(days, tempMean)
+
+	return maxTemp, minTemp, meanTemp
 }
