@@ -1,4 +1,4 @@
-import google.cloud.logging # type: ignore
+from google.cloud import logging # type: ignore
 from google.cloud.logging import ASCENDING # type: ignore
 # from google.cloud.logging import DESCENDING # type: ignore
 
@@ -15,21 +15,19 @@ class CloudFunction(Enum):
 
 def get_cloud_function_logs(function_type: CloudFunction, project_id: str, limit: int):
     # Create a client to access Cloud Logging
-    client = google.cloud.logging.Client(project=project_id)
+    client = logging.Client(project=project_id)
 
-    # Define the time range (e.g., logs from the last 24 hours)
-    # now = datetime.now(timezone.utc)
-    # start_time = now - timedelta(hours=24)
-    
-    # Format the times in RFC3339 format required by Google Cloud Logging
-    # start_time_str = start_time.isoformat(timespec='microseconds') + "Z"  # Ensuring UTC timezone
-    # now_str = now.isoformat(timespec='microseconds') + "Z"
+    # construct a date object representing yesterday
+    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
+    # Cloud Logging expects a timestamp in RFC3339 UTC "Zulu" format
+    # https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry
+    time_format = "%Y-%m-%dT%H:%M:%S.%f%z"
 
     logger_filter = (
         f'resource.type="cloud_function" '
-        f'resource.labels.function_name="{function_type.value}" '
-        f'(severity:"DEFAULT" OR severity:"DEBUG")'
-        # f'timestamp >= "{start_time_str}" AND timestamp <= "{now_str}"'
+        f'AND resource.labels.function_name="{function_type.value}" '
+        f'AND (severity:"DEFAULT" OR severity:"DEBUG") '
+        f'AND timestamp>="{yesterday.strftime(time_format)}"'
     )
     # Fetch logs
     entries = client.list_entries(filter_=logger_filter, order_by=ASCENDING, page_size=limit)
