@@ -7,6 +7,7 @@ import (
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/db"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/lib"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
@@ -14,10 +15,6 @@ import (
 func init() {
 	functions.HTTP("BaselineFunction", BaselineFunction)
 }
-
-const bucketName = "bsc-implementation-bucket"
-const objectName = "historic-weather-data-1950.csv"
-const destinationFileName = "/tmp/historic-weather-data-1950.csv"
 
 // Handler for the optimization function
 func BaselineFunction(w http.ResponseWriter, r *http.Request) {
@@ -41,8 +38,8 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// download from cloud storage and print document
-	if err := lib.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
+	// Download from cloud storage
+	if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
 		fmt.Println("downloading file: ", err)
 		return
 	}

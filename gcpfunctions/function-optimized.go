@@ -2,24 +2,23 @@ package gcpfunctions
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/google/uuid"
+	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/db"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/lib"
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
 
 const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction"
 
-// const url = "http://localhost:8080/"
-
 const maxRetries = 3
 
 // med: 0.004192012 Seconds
 const benchmarkMaxDuration = 4200 * time.Microsecond // = 4.2 Milliseconds
-const downloadingDuration = 5
 
 var benchmarkPassed = false
 
@@ -52,16 +51,20 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
-	// If instance is fast and don't have to perform the benchmark
+	// If instance we already know instance is fast -> don't have to perform the benchmark
 	if !benchmarkPassed {
 		// Concurrently perform the benchmark
 		go lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
 	}
-	// Simulate downloading for 10 milliseconds
-	time.Sleep(downloadingDuration * time.Millisecond)
+	// Download from cloud storage
+	if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
+		fmt.Println("downloading file: ", err)
+		return
+	}
 
 	if benchmarkPassed {
-		lib.PrintLogs("Benchmark passed", req)
+		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
+		lib.PrintLogsOptimized("Benchmark passed", req, maxTemp, minTemp, meanTemp)
 		return
 	}
 
