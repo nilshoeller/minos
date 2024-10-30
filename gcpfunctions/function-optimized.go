@@ -54,15 +54,16 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	// If we already know instance is fast -> don't have to perform the benchmark
 	if !benchmarkPassed {
 		// Concurrently perform the benchmark
-		go lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
-	}
-	// Download from cloud storage
-	if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
-		fmt.Println("downloading file: ", err)
-		return
+		lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
 	}
 
 	if benchmarkPassed {
+		// Download from cloud storage
+		if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
+			fmt.Println("downloading file: ", err)
+			return
+		}
+
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 		lib.PrintLogsOptimized("Benchmark passed", req, maxTemp, minTemp, meanTemp)
 		return
