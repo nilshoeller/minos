@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sync"
 	"time"
 
 	"cloud.google.com/go/storage"
@@ -14,7 +15,9 @@ import (
 // bucket := "bucket-name"
 // object := "object-name"
 // destFileName := "file.txt"
-func DownloadFile(bucket, object string, destFileName string) error {
+func DownloadFile(bucket, object string, destFileName string, wg *sync.WaitGroup) error {
+	defer wg.Done()
+
 	ctx := context.Background()
 	client, err := storage.NewClient(ctx)
 	if err != nil {
@@ -47,5 +50,4 @@ func DownloadFile(bucket, object string, destFileName string) error {
 	// fmt.Fprintln("Blob %v downloaded to local file %v\n", object, destFileName)
 
 	return nil
-
 }
