@@ -2,19 +2,19 @@
   "reqCounter": {
     "type": "counter",
     "contains": "default",
-    "values": { "count": 12, "rate": 0.0995120905614424 },
+    "values": { "count": 12, "rate": 0.09867371670637791 },
     "thresholds": { "count>=0": { "ok": true } }
   },
   "total_duration": {
     "type": "trend",
     "contains": "default",
     "values": {
-      "max": 0.006287572,
-      "p(90)": 0.006040363700000001,
-      "p(95)": 0.00621313995,
-      "avg": 0.0045200325,
-      "min": 0.003508827,
-      "med": 0.004192012
+      "avg": 0.004348306083333333,
+      "min": 0.003922456,
+      "med": 0.0042595485,
+      "max": 0.005283047,
+      "p(90)": 0.0050299551,
+      "p(95)": 0.0051749247
     },
     "thresholds": {
       "avg < 0.06": { "ok": true },

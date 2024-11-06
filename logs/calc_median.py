@@ -1,8 +1,11 @@
 import pandas as pd
+from datetime import datetime
+
+today_date = datetime.now().strftime("%Y-%m-%d")
 
 # Load CSV data into a DataFrame
-data_optimized = pd.read_csv('./logs_archive/2024-10-30-optimizedFunction-logs.csv')
-data_baseline = pd.read_csv('./logs_archive/2024-10-30-baselineFunction-logs.csv')
+data_optimized = pd.read_csv(f'./logs_archive/{today_date}-optimizedFunction-logs.csv')
+data_baseline = pd.read_csv(f'./logs_archive/{today_date}-baselineFunction-logs.csv')
 # Calculate the mean of the 'functionexectime' column
 median_optimized_functionexectime = data_optimized['functionexectime'].median()
 median_baseline_functionexectime = data_baseline['functionexectime'].median()
