@@ -56,7 +56,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	wg := new(sync.WaitGroup)
 	wg.Add(1)
 	// currently no error handling because of goroutine, maybe channels would work
-	go db.DownloadFile(bucketName, objectName, destinationFileName, wg)
+	go db.DownloadFileWaitGroupWrapper(bucketName, objectName, destinationFileName, wg)
 
 	// If we already know instance is fast -> don't have to perform the benchmark
 	if !benchmarkPassed {

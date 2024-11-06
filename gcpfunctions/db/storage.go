@@ -11,13 +11,15 @@ import (
 	"cloud.google.com/go/storage"
 )
 
-// downloadFile downloads an object to a file.
-// bucket := "bucket-name"
-// object := "object-name"
-// destFileName := "file.txt"
-func DownloadFile(bucket, object string, destFileName string, wg *sync.WaitGroup) error {
+// DownloadFileWaitGroupWrapper downloads a file and implements the wait group logic for concurrent execution
+func DownloadFileWaitGroupWrapper(bucket, object, destFileName string, wg *sync.WaitGroup) {
 	defer wg.Done()
+	DownloadFile(bucket, object, destFileName)
+	return
+}
 
+// downloadFile downloads an object to a file.
+func DownloadFile(bucket, object string, destFileName string) error {
 	ctx := context.Background()
 	client, err := storage.NewClient(ctx)
 	if err != nil {
