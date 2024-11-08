@@ -67,7 +67,6 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if benchmarkPassed {
 		wg.Wait()
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
-		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		lib.PrintLogsOptimized("Benchmark passed", req, maxTemp, minTemp, meanTemp)
 		return
 	}
