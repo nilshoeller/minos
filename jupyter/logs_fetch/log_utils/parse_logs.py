@@ -48,7 +48,7 @@ def parse_optimized_func(logs):
                 continue
             
             if is_between_markers:
-                if "Benchmark" in log.payload or "Max" in log.payload:
+                if "Execution finished" in log.payload or "Max retries reached" in log.payload:
                     new_log["log"] = log.payload
                     continue
                 if "TaskId" in log.payload:
@@ -119,7 +119,7 @@ def parse_baseline_func(logs):
                 continue
             
             if is_between_markers:
-                if "Execution finished." in log.payload:
+                if "Execution finished" in log.payload:
                     new_log["log"] = log.payload
                     continue
                 if "TaskId" in log.payload:

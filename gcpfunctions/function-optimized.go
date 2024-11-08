@@ -19,7 +19,7 @@ const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/o
 const maxRetries = 3
 
 // med: 0.004192012 Seconds
-const benchmarkMaxDuration = 3850 * time.Microsecond // = 4.2 Milliseconds
+const benchmarkMaxDuration = 3800 * time.Microsecond // = 4.2 Milliseconds
 
 var benchmarkPassed = false
 
@@ -67,7 +67,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if benchmarkPassed {
 		wg.Wait()
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
-		lib.PrintLogsOptimized("Benchmark passed", req, maxTemp, minTemp, meanTemp)
+		lib.PrintLogsOptimized("Execution finished", req, maxTemp, minTemp, meanTemp)
 		return
 	}
 

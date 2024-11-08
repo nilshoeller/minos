@@ -46,5 +46,5 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 
 	maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 
-	lib.PrintBaselineLogs("Execution finished.", req, maxTemp, minTemp, meanTemp)
+	lib.PrintBaselineLogs("Execution finished", req, maxTemp, minTemp, meanTemp)
 }
