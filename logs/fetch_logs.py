@@ -43,6 +43,9 @@ def get_cloud_function_logs(function_type: CloudFunction, project_id: str, limit
     
     return []
 
+def fetch_logs_and_save(function_type: CloudFunction, project_id: str):
+    fetched_list = get_cloud_function_logs(function_type, project_id, 100)
+    csv_log_saver.save_to_csv(function_type.value, fetched_list)
 
 if __name__ == "__main__":
     # Fetch and print logs
