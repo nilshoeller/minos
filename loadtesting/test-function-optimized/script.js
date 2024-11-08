@@ -6,7 +6,7 @@ const url =
 
 export const options = {
   vus: 1,
-  duration: "600s",
+  duration: "450s",
 };
 
 // Run with: k6 run script.js

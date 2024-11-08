@@ -5,15 +5,20 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sync"
 	"time"
 
 	"cloud.google.com/go/storage"
 )
 
+// DownloadFileWaitGroupWrapper downloads a file and implements the wait group logic for concurrent execution
+func DownloadFileWaitGroupWrapper(bucket, object, destFileName string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	DownloadFile(bucket, object, destFileName)
+	return
+}
+
 // downloadFile downloads an object to a file.
-// bucket := "bucket-name"
-// object := "object-name"
-// destFileName := "file.txt"
 func DownloadFile(bucket, object string, destFileName string) error {
 	ctx := context.Background()
 	client, err := storage.NewClient(ctx)
@@ -47,5 +52,4 @@ func DownloadFile(bucket, object string, destFileName string) error {
 	// fmt.Fprintln("Blob %v downloaded to local file %v\n", object, destFileName)
 
 	return nil
-
 }

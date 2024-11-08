@@ -2,8 +2,9 @@ package gcpfunctions
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
+	"os"
+	"sync"
 	"time"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
@@ -51,6 +52,12 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
+	// Create a wait group
+	wg := new(sync.WaitGroup)
+	wg.Add(1)
+	// currently no error handling because of goroutine, maybe channels would work
+	go db.DownloadFileWaitGroupWrapper(bucketName, objectName, destinationFileName, wg)
+
 	// If we already know instance is fast -> don't have to perform the benchmark
 	if !benchmarkPassed {
 		// Concurrently perform the benchmark
@@ -58,13 +65,9 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if benchmarkPassed {
-		// Download from cloud storage
-		if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
-			fmt.Println("downloading file: ", err)
-			return
-		}
-
+		wg.Wait()
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
+		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		lib.PrintLogsOptimized("Benchmark passed", req, maxTemp, minTemp, meanTemp)
 		return
 	}
@@ -72,7 +75,8 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
 		lib.InvokeNew(url, req)
-		return
+		// return
+		os.Exit(0)
 	}
 
 	lib.PrintLogs("Max retries reached", req)

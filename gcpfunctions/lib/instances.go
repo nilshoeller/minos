@@ -5,9 +5,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"sync"
 
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
+
+func InvokeNewWaitGroupWrapper(url string, body_information model.Request, wg *sync.WaitGroup) {
+	defer wg.Done()
+	err := InvokeNew(url, body_information)
+	if err != nil {
+		fmt.Println("Error in InvokeNew:", err)
+	}
+}
 
 // invokeNew re-invokes the function at the specified URL.
 func InvokeNew(

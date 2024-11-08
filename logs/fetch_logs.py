@@ -20,7 +20,7 @@ def get_cloud_function_logs(function_type: CloudFunction, project_id: str, limit
     # construct a date object representing yesterday
     # yesterday = datetime.now(timezone.utc) - timedelta(days=1)
     # yesterday = datetime.now(timezone.utc) - timedelta(minutes=5)
-    yesterday = datetime.now(timezone.utc) - timedelta(minutes=120)
+    yesterday = datetime.now(timezone.utc) - timedelta(minutes=10)
     # Cloud Logging expects a timestamp in RFC3339 UTC "Zulu" format
     # https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry
     time_format = "%Y-%m-%dT%H:%M:%S.%f%z"
