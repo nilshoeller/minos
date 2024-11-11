@@ -7,7 +7,7 @@ START_MARKER_LOG = "=== START LOG ==="
 END_MARKER_LOG = "=== END LOG ==="
 
 EXECUTION_FINISHED_MARKER = "Execution finished"
-MAX_RETRIES_MARKER = "Execution finished"
+MAX_RETRIES_MARKER = "Max retries reached"
 
 def parse_func_logs(logs) -> list:
     # Dictionary to store logs grouped by execution_id
@@ -38,7 +38,7 @@ def parse_func_logs(logs) -> list:
                 continue
             if log.payload == END_MARKER_LOG:
                 continue
-            if EXECUTION_FINISHED_MARKER in log.payload  or MAX_RETRIES_MARKER in log.payload:
+            if EXECUTION_FINISHED_MARKER in log.payload or MAX_RETRIES_MARKER in log.payload:
                 current_log["log"] = log.payload
                 continue
             if "TaskId" in log.payload:
