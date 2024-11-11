@@ -5,8 +5,8 @@ const url =
   "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/baselineFunction";
 
 export const options = {
-  vus: 1,
-  duration: "450s",
+  vus: 2,
+  duration: "300s",
 };
 
 // Run with: k6 run script.js
