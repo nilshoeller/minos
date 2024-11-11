@@ -6,9 +6,9 @@ def calculate_median(func_name: str) -> float:
     # Load CSV data into a DataFrame
     data = pd.read_csv(f'./logs_archive/{today_date}-{func_name}-logs.csv')
     # Calculate the mean of the 'functionexectime' column
-    median_functionexectime = data['functionexectime'].median()
+    median_execution_time = data['execution_time'].median()
 
-    return median_functionexectime
+    return median_execution_time
 
 def calc_median_for_funcs():
     median_optimized = calculate_median("optimizedFunction")
