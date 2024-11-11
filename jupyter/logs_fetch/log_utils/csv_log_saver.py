@@ -24,6 +24,6 @@ def save_to_csv(function_name, logs, folder_name='./logs_archive'):
             writer.writeheader()
             writer.writerows(logs)
 
-        print(f"Logs saved to {csv_file_path}")
+        print(f"Logs saved to {csv_file_path}\n")
     else:
         print("No logs to save.")
