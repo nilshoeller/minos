@@ -9,6 +9,9 @@ END_MARKER_LOG = "=== END LOG ==="
 EXECUTION_FINISHED_MARKER = "Execution finished"
 MAX_RETRIES_MARKER = "Max retries reached"
 
+BENCHMARK_DURATION = "Benchmark-duration"
+DOWNLOAD_DURATION = "Download-duration"
+
 def parse_func_logs(logs) -> list:
     # Dictionary to store logs grouped by execution_id
     grouped_logs = {}
@@ -25,6 +28,8 @@ def parse_func_logs(logs) -> list:
                 "log": None,
                 "retries": 0,
                 "execution_time": None,
+                "benchmark_duration": 0,
+                "download_duration": 0,
             }
             count += 1
 
@@ -46,6 +51,12 @@ def parse_func_logs(logs) -> list:
                 continue
             if "Retries" in log.payload:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
+                continue
+            if BENCHMARK_DURATION in log.payload:
+                current_log["benchmark_duration"] = int(log.payload.replace("Benchmark-duration: ", ""))
+                continue
+            if DOWNLOAD_DURATION in log.payload:
+                current_log["download_duration"] = int(log.payload.replace("Download-duration: ", ""))
                 continue
 
         if log.severity == "DEBUG" and END_MARKER_DURATION in log.payload:

@@ -2,6 +2,7 @@ package gcpfunctions
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"os"
 	"sync"
@@ -56,6 +57,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	wg := new(sync.WaitGroup)
 	wg.Add(1)
 	// currently no error handling because of goroutine, maybe channels would work
+	startTime := time.Now()
 	go db.DownloadFileWaitGroupWrapper(bucketName, objectName, destinationFileName, wg)
 
 	// If we already know instance is fast -> don't have to perform the benchmark
@@ -66,6 +68,9 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 
 	if benchmarkPassed {
 		wg.Wait()
+		duration := time.Since(startTime)
+		fmt.Printf("Download-duration: %2.f\n", float64(duration))
+
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)

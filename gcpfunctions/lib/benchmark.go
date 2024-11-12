@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -16,7 +17,7 @@ func PerformBenchmark(maxDuration time.Duration, benchmarkPassed *bool) {
 	if duration < maxDuration {
 		*benchmarkPassed = true
 	}
-
+	fmt.Printf("Benchmark-duration: %2.f\n", float64(duration))
 }
 
 // PerformBenchmark performs a micro-benchmark in milliseconds
