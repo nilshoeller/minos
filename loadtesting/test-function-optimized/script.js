@@ -5,7 +5,7 @@ const url =
   "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction";
 
 export const options = {
-  vus: 3,
+  vus: 2,
   duration: "120s",
 };
 

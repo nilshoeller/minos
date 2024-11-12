@@ -67,13 +67,13 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if benchmarkPassed {
-		wg.Wait()
+		wg.Wait() // Ensure download completes
 		duration := time.Since(startTime)
 		fmt.Printf("Download-duration: %2.f\n", float64(duration*time.Millisecond))
 
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
-		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
-		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+		// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+		// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		lib.PrintLogsOptimized("Execution finished", req, maxTemp, minTemp, meanTemp)
 		return
 	}
@@ -81,11 +81,12 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
 		wg.Add(1)
-		lib.InvokeNewWaitGroupWrapper(url, req, wg)
+		go lib.InvokeNewWaitGroupWrapper(url, req, wg)
 		wg.Wait()
 		// return
 		os.Exit(0)
 	}
 
 	lib.PrintLogs("Max retries reached", req)
+	return
 }
