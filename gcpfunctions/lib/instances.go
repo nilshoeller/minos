@@ -51,5 +51,6 @@ func InvokeNew(
 		return fmt.Errorf("unexpected status code: %d for task %s", resp.StatusCode, body_information.TaskID)
 	}
 
+	fmt.Println("Finished invoking new instance.")
 	return nil
 }
