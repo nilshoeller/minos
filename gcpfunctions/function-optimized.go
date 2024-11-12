@@ -80,7 +80,9 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
-		lib.InvokeNew(url, req)
+		wg.Add(1)
+		lib.InvokeNewWaitGroupWrapper(url, req, wg)
+		wg.Wait()
 		// return
 		os.Exit(0)
 	}
