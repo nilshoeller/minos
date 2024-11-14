@@ -15,6 +15,8 @@ FAST_INSTANCE = "Fast instance"
 
 CRASHING_INSTANCE = "Crashing instance"
 
+LR_DURATION = "LR-duration"
+
 microsecond_symbol = "µs"
 millisecond_symbol = "ms"
 
@@ -36,6 +38,7 @@ def parse_func_logs(logs) -> list:
                 "execution_time": None,
                 "benchmark_duration": None,
                 "download_duration": "---",
+                "lr_duration": 0,
             }
             count += 1
 
@@ -59,17 +62,23 @@ def parse_func_logs(logs) -> list:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
                 continue
             if BENCHMARK_DURATION in log.payload:
-                current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "") + " " + microsecond_symbol
+                # current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "") + " " + microsecond_symbol
+                current_log["benchmark_duration"] = int(log.payload.replace("Benchmark-duration: ", ""))
                 continue
             if FAST_INSTANCE in log.payload:
-                current_log["download_duration"] = log.payload
+                current_log["benchmark_duration"] = log.payload
                 continue
             if DOWNLOAD_DURATION in log.payload:
-                current_log["download_duration"] = log.payload.replace("Download-duration: ", "") + " " + millisecond_symbol
+                # current_log["download_duration"] = log.payload.replace("Download-duration: ", "") + " " + millisecond_symbol
+                current_log["download_duration"] = int(log.payload.replace("Download-duration: ", ""))
                 continue
             if CRASHING_INSTANCE in log.payload:
                 current_log["log"] = log.payload
                 continue
+            if LR_DURATION in log.payload:
+                current_log["lr_duration"] = int(log.payload.replace("LR-duration: ", ""))
+                continue
+
 
         if log.severity == "DEBUG" and END_MARKER_DURATION in log.payload:
             current_log["timestamp"] = log.timestamp.isoformat()

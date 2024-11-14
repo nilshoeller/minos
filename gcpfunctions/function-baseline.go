@@ -48,9 +48,14 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	duration := time.Since(startTime)
 	fmt.Printf("Download-duration: %2.f\n", float64(duration)/float64(time.Millisecond))
 
+	startTimeLR := time.Now()
+
 	maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 	maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 	// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+
+	durationLR := time.Since(startTimeLR)
+	fmt.Printf("LR-duration: %2.f\n", float64(durationLR)/float64(time.Millisecond))
 
 	lib.PrintBaselineLogs("Execution finished", req, maxTemp, minTemp, meanTemp)
 }

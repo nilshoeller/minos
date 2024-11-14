@@ -1,15 +1,35 @@
 count,timestamp,execution_id,log,retries,execution_time,benchmark_duration,download_duration
-0,2024-11-14T09:52:03.820518+00:00,5xesjxrj76sr,Execution finished,0,455.0,Benchmark already passedµs,147ms
-1,2024-11-14T09:52:06.455720+00:00,q8fn3lybe6rg,Execution finished,0,379.0,Benchmark already passedµs,144ms
-2,2024-11-14T09:52:14.322241+00:00,q8fn52hgwq0d,Execution finished,0,406.0,Benchmark already passedµs,109ms
-3,2024-11-14T09:52:16.953223+00:00,q8fnfe47008f,Execution finished,0,375.0,Benchmark already passedµs,141ms
-4,2024-11-14T09:52:24.809224+00:00,v8nvj1om13zx,Execution finished,0,434.0,Benchmark already passedµs,128ms
-5,2024-11-14T09:52:27.528708+00:00,q8fnppoi3syg,Execution finished,0,501.0,Benchmark already passedµs,193ms
-6,2024-11-14T09:52:35.321416+00:00,5xesafkzs066,Execution finished,0,429.0,Benchmark already passedµs,121ms
-7,2024-11-14T09:52:38.324929+00:00,5au4xjcmpceu,Crashing instance,0,744.0,4391µs,---
-8,2024-11-14T09:52:38.318244+00:00,v8nv4dmgllhw,Execution finished,1,382.0,Benchmark already passedµs,73ms
-9,2024-11-14T09:52:46.583031+00:00,gohsvkxz82ae,Crashing instance,0,1123.0,4258µs,---
-10,2024-11-14T09:52:46.574499+00:00,q8fnraygm6mr,Execution finished,1,749.0,Benchmark already passedµs,289ms
-11,2024-11-14T09:52:49.664274+00:00,sc94fpyo1b0x,Crashing instance,0,1235.0,5802µs,---
-12,2024-11-14T09:52:49.656974+00:00,q8fn0qfz19bt,Execution finished,1,827.0,Benchmark already passedµs,299ms
-13,2024-11-14T09:52:57.236254+00:00,q8fnuqrtg63l,Execution finished,0,509.0,Benchmark already passedµs,196ms
+0,2024-11-14T10:04:41.271186+00:00,1pd4bxqeth8i,Crashing instance,0,1419.0,5011,---
+1,2024-11-14T10:04:41.264739+00:00,3e7m48ay4rvm,Execution finished,1,888.0,3756,573
+2,2024-11-14T10:04:42.770236+00:00,q9oh5zs3b6nq,Crashing instance,0,1476.0,5145,---
+3,2024-11-14T10:04:42.762744+00:00,vvn9rkza373c,Crashing instance,0,964.0,4116,---
+4,2024-11-14T10:04:42.754030+00:00,3e7mqifgiza3,Execution finished,2,509.0,Fast instance,205
+5,2024-11-14T10:04:52.165954+00:00,xoxlxlugeywt,Crashing instance,0,774.0,3889,---
+6,2024-11-14T10:04:52.159370+00:00,3e7myb804qtj,Execution finished,1,380.0,Fast instance,68
+7,2024-11-14T10:04:53.250075+00:00,3e7m28t41ggh,Execution finished,0,448.0,Fast instance,142
+8,2024-11-14T10:05:02.986832+00:00,xmelgavezdf6,Crashing instance,0,743.0,4461,---
+9,2024-11-14T10:05:02.979914+00:00,3e7mhmgk3m5i,Execution finished,1,379.0,Fast instance,68
+10,2024-11-14T10:05:03.774233+00:00,3e7myokm13va,Execution finished,0,413.0,Fast instance,183
+11,2024-11-14T10:05:14.585559+00:00,4c0loavjs4nb,Crashing instance,0,1492.0,3955,---
+12,2024-11-14T10:05:14.579093+00:00,7x8de6jif85d,Crashing instance,0,953.0,5602,---
+13,2024-11-14T10:05:14.572606+00:00,3e7me076b5ik,Execution finished,2,491.0,Fast instance,162
+14,2024-11-14T10:05:15.656046+00:00,qwmhx1902857,Crashing instance,0,1055.0,3946,---
+15,2024-11-14T10:05:15.649108+00:00,14286qda4644,Execution finished,1,740.0,3641,422
+16,2024-11-14T10:05:25.043281+00:00,1428pfud1xex,Execution finished,0,424.0,Fast instance,118
+17,2024-11-14T10:05:26.654302+00:00,tgbkeoaekevz,Crashing instance,0,866.0,4334,---
+18,2024-11-14T10:05:26.647087+00:00,1428xpt7l18l,Execution finished,1,370.0,Fast instance,149
+19,2024-11-14T10:05:35.545308+00:00,3e7mppnb0md8,Execution finished,0,438.0,Fast instance,58
+20,2024-11-14T10:05:38.105686+00:00,lxy1aw66qnmi,Crashing instance,0,1419.0,5095,---
+21,2024-11-14T10:05:38.099126+00:00,jn8pe7f5bdxl,Execution finished,1,976.0,3675,571
+22,2024-11-14T10:05:46.470919+00:00,udddfep5rglo,Execution finished,0,814.0,3840,431
+23,2024-11-14T10:05:49.182555+00:00,678d4vp6254x,Crashing instance,0,960.0,4609,---
+24,2024-11-14T10:05:49.176363+00:00,3e7miel3xq6x,Execution finished,1,503.0,Fast instance,182
+25,2024-11-14T10:05:57.011113+00:00,jn8pye2avpk9,Execution finished,0,401.0,Fast instance,181
+26,2024-11-14T10:05:59.769394+00:00,udddxw193xdc,Execution finished,0,495.0,Fast instance,192
+27,2024-11-14T10:06:07.474736+00:00,uddd1kfupbni,Execution finished,0,418.0,Fast instance,111
+28,2024-11-14T10:06:10.195960+00:00,jn8pw4scfv3v,Execution finished,0,375.0,Fast instance,78
+29,2024-11-14T10:06:18.381448+00:00,e8k7hjkaxvoi,Execution finished,0,774.0,3814,457
+30,2024-11-14T10:06:20.477518+00:00,jn8p0bf47575,Execution finished,0,211.0,Fast instance,124
+31,2024-11-14T10:06:28.854749+00:00,3e7mjps0rb26,Execution finished,0,389.0,Fast instance,85
+32,2024-11-14T10:06:31.035366+00:00,1428opsfpd8d,Execution finished,0,425.0,Fast instance,60
+33,2024-11-14T10:06:39.411575+00:00,jn8pqam395af,Execution finished,0,500.0,Fast instance,100
