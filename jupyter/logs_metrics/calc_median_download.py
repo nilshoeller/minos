@@ -29,3 +29,9 @@ def calc_median_download_OPTIMIZED():
 def calc_median_download_BASELINE():
     median_baseline = calculate_median_download("baselineFunction")
     print(f"The median of BASELINE function download duration is: {median_baseline}")   
+
+def return_median_download_OPTIMIZED():
+    return calculate_median_download("optimizedFunction")
+
+def return_median_download_BASELINE():
+    return calculate_median_download("baselineFunction")
