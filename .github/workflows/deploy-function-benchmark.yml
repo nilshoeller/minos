@@ -1,7 +1,6 @@
 name: Deploy Cloud Function Execute-Benchmark
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:

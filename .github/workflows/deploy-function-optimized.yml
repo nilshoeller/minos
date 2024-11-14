@@ -1,7 +1,6 @@
 name: Deploy Cloud Function Optimized
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
