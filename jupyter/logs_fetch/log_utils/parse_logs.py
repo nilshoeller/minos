@@ -28,7 +28,7 @@ def parse_func_logs(logs) -> list:
                 "log": None,
                 "retries": 0,
                 "execution_time": None,
-                "benchmark_duration": 0,
+                "benchmark_duration": None,
                 "download_duration": 0,
             }
             count += 1
@@ -53,7 +53,7 @@ def parse_func_logs(logs) -> list:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
                 continue
             if BENCHMARK_DURATION in log.payload:
-                current_log["benchmark_duration"] = int(log.payload.replace("Benchmark-duration: ", ""))
+                current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "")
                 continue
             if DOWNLOAD_DURATION in log.payload:
                 current_log["download_duration"] = int(log.payload.replace("Download-duration: ", ""))

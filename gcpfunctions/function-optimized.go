@@ -64,6 +64,8 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if !benchmarkPassed {
 		// Concurrently perform the benchmark
 		lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
+	} else {
+		fmt.Println("Benchmark-duration: Benchmark already passed")
 	}
 
 	if benchmarkPassed {
@@ -72,7 +74,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Download-duration: %2.f\n", float64(duration*time.Millisecond))
 
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
-		// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 		lib.PrintLogsOptimized("Execution finished", req, maxTemp, minTemp, meanTemp)
 		return
