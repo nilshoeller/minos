@@ -71,7 +71,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if benchmarkPassed {
 		wg.Wait() // Ensure download completes
 		duration := time.Since(startTime)
-		fmt.Printf("Download-duration: %2.f\n", float64(duration*time.Second))
+		fmt.Printf("Download-duration: %2.f\n", float64(duration)/float64(time.Millisecond))
 
 		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
