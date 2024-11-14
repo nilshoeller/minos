@@ -11,8 +11,12 @@ MAX_RETRIES_MARKER = "Max retries reached"
 
 BENCHMARK_DURATION = "Benchmark-duration"
 DOWNLOAD_DURATION = "Download-duration"
+FAST_INSTANCE = "Fast instance"
 
 CRASHING_INSTANCE = "Crashing instance"
+
+microsecond_symbol = "µs"
+millisecond_symbol = "ms"
 
 def parse_func_logs(logs) -> list:
     # Dictionary to store logs grouped by execution_id
@@ -55,10 +59,13 @@ def parse_func_logs(logs) -> list:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
                 continue
             if BENCHMARK_DURATION in log.payload:
-                current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "")
+                current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "") + " " + microsecond_symbol
+                continue
+            if FAST_INSTANCE in log.payload:
+                current_log["download_duration"] = log.payload
                 continue
             if DOWNLOAD_DURATION in log.payload:
-                current_log["download_duration"] = int(log.payload.replace("Download-duration: ", ""))
+                current_log["download_duration"] = log.payload.replace("Download-duration: ", "") + " " + millisecond_symbol
                 continue
             if CRASHING_INSTANCE in log.payload:
                 current_log["log"] = log.payload

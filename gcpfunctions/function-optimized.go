@@ -65,7 +65,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 		// Concurrently perform the benchmark
 		lib.PerformBenchmark(benchmarkMaxDuration, &benchmarkPassed)
 	} else {
-		fmt.Println("Benchmark-duration: Benchmark already passed")
+		fmt.Println("Fast instance")
 	}
 
 	if benchmarkPassed {
