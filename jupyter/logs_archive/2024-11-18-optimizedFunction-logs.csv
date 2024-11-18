@@ -1,15 +1,6 @@
 count,timestamp,execution_id,log,retries,execution_time,benchmark_duration,download_duration,lr_duration
-0,2024-11-18T09:41:19.329387+00:00,tbokmzv95mw0,Crashing instance,0,2189.0,BM v-v-v: 3900000 < 4324,---,0
-1,2024-11-18T09:41:19.321747+00:00,k34x7uwqq86b,Crashing instance,0,1723.0,BM v-v-v: 3900000 < 3913,---,0
-2,2024-11-18T09:41:19.315893+00:00,sfpwedoh32zx,Crashing instance,0,1288.0,BM v-v-v: 3900000 < 5055,---,0
-3,2024-11-18T09:41:19.308026+00:00,oa4od32oc62b,Execution finished,3,851.0,BM PASSED: 3778,519,314
-4,2024-11-18T09:41:21.306774+00:00,i3l23r3szl5a,Crashing instance,0,1941.0,BM v-v-v: 3900000 < 4620,---,0
-5,2024-11-18T09:41:21.292396+00:00,ylqipmfmfcuo,Crashing instance,0,1205.0,BM v-v-v: 3900000 < 4497,---,0
-6,2024-11-18T09:41:21.285612+00:00,hh6xw3rqf0ty,Crashing instance,0,1016.0,BM v-v-v: 3900000 < 4430,---,0
-7,2024-11-18T09:41:21.278935+00:00,oa4oc4bghfxf,Execution finished,3,486.0,Fast instance,183,301
-8,2024-11-18T09:41:31.102086+00:00,3hjyq3cxo2pd,Crashing instance,0,1663.0,BM v-v-v: 3900000 < 4124,---,0
-9,2024-11-18T09:41:31.095307+00:00,qzvuenuk387f,Crashing instance,0,1237.0,BM v-v-v: 3900000 < 3942,---,0
-10,2024-11-18T09:41:31.088403+00:00,qlmiva7cwzbb,Crashing instance,0,837.0,BM v-v-v: 3900000 < 4746,---,0
-11,2024-11-18T09:41:31.081603+00:00,oa4ovpz69wcp,Execution finished,3,434.0,Fast instance,130,301
-12,2024-11-18T09:41:32.098766+00:00,iuz9fkoqo1es,Crashing instance,0,756.0,BM v-v-v: 3900000 < 4611,---,0
-13,2024-11-18T09:41:32.092197+00:00,oa4o8h3bn27r,Execution finished,1,400.0,Fast instance,90,308
+0,2024-11-18T10:11:21.994053+00:00,6ecdgt3c9pg2,Execution finished,0,814.0,BM PASSED: 3759,509,301
+1,2024-11-18T10:11:22.049280+00:00,3fxspoldo46d,Execution finished,0,868.0,BM PASSED: 3762,472,392
+2,2024-11-18T10:11:32.861175+00:00,aw2o82o1qmh7,Execution finished,0,822.0,BM PASSED: 3570,583,235
+3,2024-11-18T10:11:33.018887+00:00,xmmft6j6opp7,Crashing instance,0,936.0,BM: 3900 < 4141,---,0
+4,2024-11-18T10:11:33.009577+00:00,6ecddzjdxxyi,Execution finished,1,502.0,Fast instance,185,311

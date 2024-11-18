@@ -18,7 +18,7 @@ func PerformBenchmark(maxDuration time.Duration, benchmarkPassed *bool) {
 		*benchmarkPassed = true
 		fmt.Printf("BM PASSED: %2.f\n", float64(duration)/float64(time.Microsecond))
 	} else {
-		fmt.Printf("BM: %2.f < %2.f\n", float64(maxDuration)/float64(time.Microsecond), float64(duration)/float64(time.Microsecond))
+		fmt.Printf("BM: %2.f > %2.f\n", float64(duration)/float64(time.Microsecond), float64(maxDuration)/float64(time.Microsecond))
 	}
 }
 
