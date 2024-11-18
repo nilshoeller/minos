@@ -1,0 +1,138 @@
+count,timestamp,execution_id,log,retries,execution_time,benchmark_duration,download_duration,lr_duration
+0,2024-11-16T15:56:11.047651+00:00,lfbaf53ui90c,Execution finished,0,812.0,3734,458,350
+1,2024-11-16T15:56:10.979550+00:00,li59iiiboko3,Execution finished,0,742.0,3579,428,311
+2,2024-11-16T15:56:21.568236+00:00,li59wsr9qlhg,Execution finished,0,475.0,Fast instance,74,399
+3,2024-11-16T15:56:23.921912+00:00,6lo1bem0fnfa,Crashing instance,0,2828.0,4177,---,0
+4,2024-11-16T15:56:23.913926+00:00,ra5es9v05e8g,Crashing instance,0,1899.0,4062,---,0
+5,2024-11-16T15:56:23.905530+00:00,zi677gdom4ae,Crashing instance,0,1488.0,4680,---,0
+6,2024-11-16T15:56:23.899838+00:00,comsi3intby5,Max retries reached,3,84.0,3943,---,0
+7,2024-11-16T15:56:32.020151+00:00,lfbaps668m43,Execution finished,0,423.0,Fast instance,105,315
+8,2024-11-16T15:56:34.267093+00:00,li594ypmjy3o,Execution finished,0,316.0,Fast instance,110,203
+9,2024-11-16T15:56:42.710708+00:00,0kdcwktte99h,Crashing instance,0,654.0,3849,---,0
+10,2024-11-16T15:56:42.703457+00:00,comsjkbmgo7o,Crashing instance,0,377.0,4561,---,0
+11,2024-11-16T15:56:42.695370+00:00,li59zctjfi0u,Execution finished,2,304.0,Fast instance,78,223
+12,2024-11-16T15:56:45.482320+00:00,6j18xwvkxyvz,Crashing instance,0,1143.0,4380,---,0
+13,2024-11-16T15:56:45.475888+00:00,pjh3zzgbkghl,Crashing instance,0,787.0,3952,---,0
+14,2024-11-16T15:56:45.468696+00:00,li59wc4hxbp8,Execution finished,2,457.0,Fast instance,149,305
+15,2024-11-16T15:56:53.179586+00:00,li595ilgmu7w,Execution finished,0,342.0,Fast instance,123,216
+16,2024-11-16T15:56:55.868639+00:00,li59kxxsd8lu,Execution finished,0,349.0,Fast instance,54,292
+17,2024-11-16T15:57:03.970644+00:00,0lh1m2iq64y1,Crashing instance,0,684.0,4761,---,0
+18,2024-11-16T15:57:03.963354+00:00,li597tkd1jxx,Execution finished,1,441.0,Fast instance,138,301
+19,2024-11-16T15:57:07.307622+00:00,fbjga6jub652,Crashing instance,0,1401.0,4455,---,0
+20,2024-11-16T15:57:07.300209+00:00,lkmdj8c23gzh,Crashing instance,0,952.0,4403,---,0
+21,2024-11-16T15:57:07.293801+00:00,lfba8bv0t41v,Execution finished,2,591.0,Fast instance,98,489
+22,2024-11-16T15:57:14.869851+00:00,ekemr1njjetm,Crashing instance,0,867.0,3825,---,0
+23,2024-11-16T15:57:14.863546+00:00,li59bmlso0e4,Execution finished,1,414.0,Fast instance,111,300
+24,2024-11-16T15:57:17.758303+00:00,li597yxeawc9,Execution finished,0,421.0,Fast instance,96,244
+25,2024-11-16T15:57:25.779806+00:00,d87srlof11v6,Crashing instance,0,878.0,4666,---,0
+26,2024-11-16T15:57:25.773288+00:00,li59c71zhv8b,Execution finished,1,466.0,Fast instance,161,303
+27,2024-11-16T15:57:29.102970+00:00,e7q1kt93u9co,Crashing instance,0,1316.0,4659,---,0
+28,2024-11-16T15:57:29.094579+00:00,lqisca9tzt8l,Crashing instance,0,940.0,4551,---,0
+29,2024-11-16T15:57:29.088174+00:00,jti4rw9y4e2n,Crashing instance,0,667.0,5156,---,0
+30,2024-11-16T15:57:29.083255+00:00,li59raqn09r2,Execution finished,3,275.0,Fast instance,58,215
+31,2024-11-16T15:57:36.536922+00:00,1dezmv048rye,Crashing instance,0,685.0,3813,---,0
+32,2024-11-16T15:57:36.529138+00:00,lfbaj0e2haaw,Execution finished,1,260.0,Fast instance,121,135
+33,2024-11-16T15:57:39.829309+00:00,9qk991qvsnr1,Execution finished,0,695.0,3717,462,227
+34,2024-11-16T15:57:46.998565+00:00,lfbajehjty0i,Execution finished,0,429.0,Fast instance,124,303
+35,2024-11-16T15:57:50.540846+00:00,l5dwewmzc4bx,Crashing instance,0,662.0,3969,---,0
+36,2024-11-16T15:57:50.534978+00:00,lfbaq22ae4fo,Execution finished,1,334.0,Fast instance,190,142
+37,2024-11-16T15:57:57.407319+00:00,9qk9mg6uahy9,Execution finished,0,378.0,Fast instance,75,299
+38,2024-11-16T15:58:01.850979+00:00,bnr4yzu2yoee,Crashing instance,0,1226.0,3886,---,0
+39,2024-11-16T15:58:01.844682+00:00,9g3m2qagfg38,Execution finished,1,849.0,3680,455,391
+40,2024-11-16T15:58:07.813586+00:00,9qk9ftxab4js,Execution finished,0,376.0,Fast instance,66,307
+41,2024-11-16T15:58:12.300687+00:00,lfbaz7pt1ioi,Execution finished,0,419.0,Fast instance,109,307
+42,2024-11-16T15:58:18.337562+00:00,9qk9ej6gbfbw,Execution finished,0,407.0,Fast instance,170,235
+43,2024-11-16T15:58:23.199796+00:00,1hkkdhrgiyzf,Crashing instance,0,864.0,3861,---,0
+44,2024-11-16T15:58:23.192632+00:00,lfbal1uatcnl,Execution finished,1,494.0,Fast instance,99,394
+45,2024-11-16T15:58:29.306270+00:00,1w0mj6zq19ql,Crashing instance,0,926.0,3993,---,0
+46,2024-11-16T15:58:29.300637+00:00,lfbaexf0t26j,Execution finished,1,499.0,Fast instance,105,390
+47,2024-11-16T15:58:33.605380+00:00,9qk97re234ep,Execution finished,0,371.0,Fast instance,70,299
+48,2024-11-16T15:58:40.082013+00:00,5xvue6hf55g6,Crashing instance,0,744.0,4220,---,0
+49,2024-11-16T15:58:40.075116+00:00,li59988hsa3a,Execution finished,1,377.0,Fast instance,67,307
+50,2024-11-16T15:58:44.053373+00:00,9g3mz9mkjqn8,Execution finished,0,378.0,Fast instance,73,303
+51,2024-11-16T15:58:50.643581+00:00,9g3my8ttgisz,Execution finished,0,450.0,Fast instance,146,301
+52,2024-11-16T15:58:54.952219+00:00,drqmxmzxyeff,Crashing instance,0,771.0,3979,---,0
+53,2024-11-16T15:58:54.946577+00:00,9g3mtfqh6dnd,Execution finished,1,352.0,Fast instance,146,204
+54,2024-11-16T15:59:01.114820+00:00,9qk9gzdpmlmk,Execution finished,0,374.0,Fast instance,67,305
+55,2024-11-16T15:59:05.393276+00:00,li59fxucclvx,Execution finished,0,357.0,Fast instance,124,230
+56,2024-11-16T15:59:11.605664+00:00,9qk9bxa576sb,Execution finished,0,454.0,Fast instance,153,299
+57,2024-11-16T15:59:15.813177+00:00,9qk9yfsjv8xx,Execution finished,0,387.0,Fast instance,78,307
+58,2024-11-16T15:59:22.122503+00:00,9qk9ibdqn0jk,Execution finished,0,393.0,Fast instance,74,317
+59,2024-11-16T15:59:26.176791+00:00,li59oocylosy,Execution finished,0,324.0,Fast instance,108,213
+60,2024-11-16T15:59:32.556980+00:00,9g3mo6it49t0,Execution finished,0,379.0,Fast instance,162,215
+61,2024-11-16T15:59:36.660598+00:00,9g3miwcexn09,Execution finished,0,419.0,Fast instance,113,303
+62,2024-11-16T15:59:42.841300+00:00,lfbaankuk7t1,Execution finished,0,250.0,Fast instance,104,143
+63,2024-11-16T15:59:47.100745+00:00,9qk9xu4g7d98,Execution finished,0,385.0,Fast instance,91,292
+64,2024-11-16T15:59:53.264233+00:00,li590n392b5g,Execution finished,0,304.0,Fast instance,104,198
+65,2024-11-16T15:59:57.597839+00:00,lfbapqnmr6fx,Execution finished,0,437.0,Fast instance,132,302
+66,2024-11-16T16:00:03.842259+00:00,9g3m6swiu85y,Execution finished,0,547.0,Fast instance,68,477
+67,2024-11-16T16:00:08.406166+00:00,ovqs1u66hc24,Crashing instance,0,687.0,4080,---,0
+68,2024-11-16T16:00:08.400158+00:00,lfbakp4iy0jc,Execution finished,1,393.0,Fast instance,93,298
+69,2024-11-16T16:00:14.343523+00:00,9g3m079cjdra,Execution finished,0,470.0,Fast instance,76,392
+70,2024-11-16T16:00:18.917064+00:00,9qk98hmqhi34,Execution finished,0,456.0,Fast instance,139,314
+71,2024-11-16T16:00:24.742095+00:00,9qk9r26q6rmv,Execution finished,0,367.0,Fast instance,126,238
+72,2024-11-16T16:00:29.459961+00:00,9g3m7oudubjs,Execution finished,0,454.0,Fast instance,138,313
+73,2024-11-16T16:00:35.208901+00:00,9qk9bmlmq0zx,Execution finished,0,433.0,Fast instance,127,304
+74,2024-11-16T16:00:39.857562+00:00,9g3mgm23i752,Execution finished,0,302.0,Fast instance,91,210
+75,2024-11-16T16:00:45.606899+00:00,9qk9tlrjctuj,Execution finished,0,332.0,Fast instance,124,206
+76,2024-11-16T16:00:50.374757+00:00,li59ascu6fj5,Execution finished,0,394.0,Fast instance,84,307
+77,2024-11-16T16:00:56.147183+00:00,9g3mmgh8hfej,Execution finished,0,417.0,Fast instance,113,302
+78,2024-11-16T16:01:00.814026+00:00,9qk96zz0nizy,Execution finished,0,370.0,Fast instance,64,304
+79,2024-11-16T16:01:06.489864+00:00,li59zt9gc2j3,Execution finished,0,223.0,Fast instance,98,122
+80,2024-11-16T16:01:11.218174+00:00,9qk9jtm1jozq,Execution finished,0,370.0,Fast instance,151,216
+81,2024-11-16T16:01:17.096044+00:00,lfba5l4swws8,Execution finished,0,466.0,Fast instance,162,301
+82,2024-11-16T16:01:21.666749+00:00,li59t8p2iug2,Execution finished,0,419.0,Fast instance,115,302
+83,2024-11-16T16:01:27.496766+00:00,lfba5pr6h5dq,Execution finished,0,328.0,Fast instance,122,204
+84,2024-11-16T16:01:32.208536+00:00,9qk9qru0dnzo,Execution finished,0,431.0,Fast instance,122,306
+85,2024-11-16T16:01:37.992576+00:00,lfba3zx18kux,Execution finished,0,466.0,Fast instance,67,396
+86,2024-11-16T16:01:42.710752+00:00,9qk9wf5bdapp,Execution finished,0,385.0,Fast instance,77,306
+87,2024-11-16T16:01:48.562934+00:00,li59n85uu2el,Execution finished,0,504.0,Fast instance,106,396
+88,2024-11-16T16:01:53.196414+00:00,lfba1jotv5vs,Execution finished,0,426.0,Fast instance,120,304
+89,2024-11-16T16:01:59.025826+00:00,lfbant9sh128,Execution finished,0,418.0,Fast instance,89,327
+90,2024-11-16T16:02:03.797188+00:00,lfbaddzc45ot,Execution finished,0,481.0,Fast instance,81,396
+91,2024-11-16T16:02:09.406156+00:00,9qk98412md2f,Execution finished,0,348.0,Fast instance,61,285
+92,2024-11-16T16:02:14.200902+00:00,li59iiix4hl8,Execution finished,0,334.0,Fast instance,111,216
+93,2024-11-16T16:02:20.002985+00:00,9qk9xy4um47k,Execution finished,0,489.0,Fast instance,95,391
+94,2024-11-16T16:02:24.525993+00:00,li5928jwsjpz,Execution finished,0,213.0,Fast instance,149,62
+95,2024-11-16T16:02:30.415640+00:00,9qk9sbmk9eql,Execution finished,0,368.0,Fast instance,57,309
+96,2024-11-16T16:02:35.146714+00:00,9g3ma70vbb71,Execution finished,0,490.0,Fast instance,185,303
+97,2024-11-16T16:02:40.868530+00:00,li59a820kdm2,Execution finished,0,423.0,Fast instance,117,304
+98,2024-11-16T16:02:45.564582+00:00,9g3myot98gyg,Execution finished,0,363.0,Fast instance,139,221
+99,2024-11-16T16:02:51.303373+00:00,lfbas2b3u056,Execution finished,0,362.0,Fast instance,54,306
+100,2024-11-16T16:02:56.015391+00:00,lfbaikvr25bt,Execution finished,0,372.0,Fast instance,147,223
+101,2024-11-16T16:03:01.757322+00:00,9g3m84vd0hna,Execution finished,0,381.0,Fast instance,69,309
+102,2024-11-16T16:03:06.504856+00:00,9qk9c8d08ipt,Execution finished,0,449.0,Fast instance,145,302
+103,2024-11-16T16:03:12.496083+00:00,dhxt6kxglzhs,Execution finished,0,667.0,3664,355,309
+104,2024-11-16T16:03:16.922722+00:00,9qk98b3ooywo,Execution finished,0,284.0,Fast instance,64,217
+105,2024-11-16T16:03:22.953788+00:00,9g3mesf8876v,Execution finished,0,426.0,Fast instance,115,308
+106,2024-11-16T16:03:27.466626+00:00,li59376pxijm,Execution finished,0,504.0,Fast instance,104,398
+107,2024-11-16T16:03:33.441633+00:00,9g3ma2v74de0,Execution finished,0,421.0,Fast instance,122,298
+108,2024-11-16T16:03:38.001816+00:00,lfbae7ttd5ww,Execution finished,0,473.0,Fast instance,74,397
+109,2024-11-16T16:03:44.065262+00:00,li59i0mg653v,Execution finished,0,491.0,Fast instance,90,398
+110,2024-11-16T16:03:48.477806+00:00,li59twwvz1wi,Execution finished,0,405.0,Fast instance,95,306
+111,2024-11-16T16:03:54.515493+00:00,9qk913j6t3e6,Execution finished,0,398.0,Fast instance,88,306
+112,2024-11-16T16:03:58.995593+00:00,lfbaa2x1j834,Execution finished,0,477.0,Fast instance,81,394
+113,2024-11-16T16:04:04.979032+00:00,li59u7ks1wf8,Execution finished,0,418.0,Fast instance,104,311
+114,2024-11-16T16:04:09.288589+00:00,dhxt1iyqy7rd,Execution finished,0,216.0,Fast instance,71,142
+115,2024-11-16T16:04:15.466119+00:00,li597mpfz4cl,Execution finished,0,456.0,Fast instance,61,304
+116,2024-11-16T16:04:19.789824+00:00,dhxtz76u0xs2,Execution finished,0,380.0,Fast instance,77,302
+117,2024-11-16T16:04:26.004881+00:00,lfba2g5jyvnu,Execution finished,0,451.0,Fast instance,142,307
+118,2024-11-16T16:04:30.322174+00:00,lfba3w3qiq6u,Execution finished,0,471.0,Fast instance,82,384
+119,2024-11-16T16:04:36.355508+00:00,li59f1axur9g,Execution finished,0,258.0,Fast instance,67,187
+120,2024-11-16T16:04:40.690023+00:00,dhxtou9641hd,Execution finished,0,337.0,Fast instance,129,206
+121,2024-11-16T16:04:46.846366+00:00,9g3muvggvstl,Execution finished,0,400.0,Fast instance,100,299
+122,2024-11-16T16:04:51.208321+00:00,9qk9owsjhng4,Execution finished,0,461.0,Fast instance,152,307
+123,2024-11-16T16:04:57.208291+00:00,dhxtnzw7t4h8,Execution finished,0,331.0,Fast instance,109,220
+124,2024-11-16T16:05:01.592814+00:00,lfbat868rvuh,Execution finished,0,340.0,Fast instance,142,194
+125,2024-11-16T16:05:07.553964+00:00,9qk95luroj0s,Execution finished,0,314.0,Fast instance,83,229
+126,2024-11-16T16:05:12.102019+00:00,lfbawu7x5522,Execution finished,0,466.0,Fast instance,71,393
+127,2024-11-16T16:05:18.101805+00:00,lfbapuf2o2wv,Execution finished,0,421.0,Fast instance,112,307
+128,2024-11-16T16:05:22.506459+00:00,li59mzcwrzgu,Execution finished,0,320.0,Fast instance,79,238
+129,2024-11-16T16:05:28.671417+00:00,li59dmpn92pg,Execution finished,0,448.0,Fast instance,137,309
+130,2024-11-16T16:05:33.007786+00:00,lfba0xjq9hbx,Execution finished,0,377.0,Fast instance,68,307
+131,2024-11-16T16:05:39.184550+00:00,dhxtvclxt5xw,Execution finished,0,409.0,Fast instance,109,297
+132,2024-11-16T16:05:43.476710+00:00,li59k857fiyu,Execution finished,0,406.0,Fast instance,96,308
+133,2024-11-16T16:05:49.744789+00:00,9g3mszdxfvsu,Execution finished,0,422.0,Fast instance,118,303
+134,2024-11-16T16:05:53.964143+00:00,li5956hu93lj,Execution finished,0,448.0,Fast instance,145,300
+135,2024-11-16T16:06:00.219131+00:00,9qk95vm2fqj0,Execution finished,0,353.0,Fast instance,56,293
+136,2024-11-16T16:06:04.600211+00:00,dhxtdma28gu7,Execution finished,0,534.0,Fast instance,117,410
