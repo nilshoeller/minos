@@ -52,7 +52,7 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 
 	maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
 	maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
-	// maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+	maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
 
 	durationLR := time.Since(startTimeLR)
 	fmt.Printf("LR-duration: %2.f\n", float64(durationLR)/float64(time.Millisecond))
