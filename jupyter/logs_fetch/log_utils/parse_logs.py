@@ -9,8 +9,16 @@ END_MARKER_LOG = "=== END LOG ==="
 EXECUTION_FINISHED_MARKER = "Execution finished"
 MAX_RETRIES_MARKER = "Max retries reached"
 
-BENCHMARK_DURATION = "Benchmark-duration"
+BENCHMARK_DURATION = "Benchmark passed"
 DOWNLOAD_DURATION = "Download-duration"
+FAST_INSTANCE = "Fast instance"
+
+CRASHING_INSTANCE = "Crashing instance"
+
+LR_DURATION = "LR-duration"
+
+microsecond_symbol = "µs"
+millisecond_symbol = "ms"
 
 def parse_func_logs(logs) -> list:
     # Dictionary to store logs grouped by execution_id
@@ -28,8 +36,9 @@ def parse_func_logs(logs) -> list:
                 "log": None,
                 "retries": 0,
                 "execution_time": None,
-                "benchmark_duration": 0,
-                "download_duration": 0,
+                "benchmark_duration": None,
+                "download_duration": "---",
+                "lr_duration": 0,
             }
             count += 1
 
@@ -53,11 +62,23 @@ def parse_func_logs(logs) -> list:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
                 continue
             if BENCHMARK_DURATION in log.payload:
-                current_log["benchmark_duration"] = int(log.payload.replace("Benchmark-duration: ", ""))
+                # current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "") + " " + microsecond_symbol
+                current_log["benchmark_duration"] = log.payload
+                continue
+            if FAST_INSTANCE in log.payload:
+                current_log["benchmark_duration"] = log.payload
                 continue
             if DOWNLOAD_DURATION in log.payload:
+                # current_log["download_duration"] = log.payload.replace("Download-duration: ", "") + " " + millisecond_symbol
                 current_log["download_duration"] = int(log.payload.replace("Download-duration: ", ""))
                 continue
+            if CRASHING_INSTANCE in log.payload:
+                current_log["log"] = log.payload
+                continue
+            if LR_DURATION in log.payload:
+                current_log["lr_duration"] = int(log.payload.replace("LR-duration: ", ""))
+                continue
+
 
         if log.severity == "DEBUG" and END_MARKER_DURATION in log.payload:
             current_log["timestamp"] = log.timestamp.isoformat()

@@ -1,0 +1,38 @@
+name: Deploy Cloud Function Execute-Benchmark
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Cloud Function
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Authenticate with Google Cloud
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # Step 3: Set up Google Cloud SDK
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: bsc-thesis-implementation
+
+      # Step 4: Deploy Cloud Function
+      - name: Deploy Execute-Benchmark Function
+        run: |
+          gcloud functions deploy executeBenchmark \
+            --runtime=go121 \
+            --trigger-http \
+            --allow-unauthenticated \
+            --source=./gcpfunctions/ \
+            --entry-point=ExecuteBenchmark \
+            --no-gen2 \
+            --region=europe-west3

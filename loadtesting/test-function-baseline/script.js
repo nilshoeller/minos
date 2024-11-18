@@ -5,11 +5,11 @@ const url =
   "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/baselineFunction";
 
 export const options = {
-  vus: 2,
-  duration: "120s",
+  vus: __ENV.VUS ? parseInt(__ENV.VUS) : 1,
+  duration: __ENV.DURATION || "120s",
 };
 
-// Run with: k6 run script.js
+// Run with: k6 run --env VUS=5 --env DURATION=60s script.js
 export default function () {
   const response = http.get(url);
 

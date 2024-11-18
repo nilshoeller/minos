@@ -9,28 +9,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy Cloud Function
+  deploy_optimized:
+    name: Deploy Optimized Function
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Authenticate with Google Cloud
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      # Step 3: Set up Google Cloud SDK
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: bsc-thesis-implementation
 
-      # Step 4: Deploy Cloud Functions
       - name: Deploy Optimized Function
         run: |
           gcloud functions deploy optimizedFunction \
@@ -42,6 +38,24 @@ jobs:
             --no-gen2 \
             --region=europe-west3
 
+  deploy_baseline:
+    name: Deploy Baseline Function
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: bsc-thesis-implementation
+
       - name: Deploy Baseline Function
         run: |
           gcloud functions deploy baselineFunction \
@@ -52,6 +66,24 @@ jobs:
             --entry-point=BaselineFunction \
             --no-gen2 \
             --region=europe-west3
+
+  deploy_benchmark:
+    name: Deploy Execute-Benchmark Function
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: bsc-thesis-implementation
 
       - name: Deploy Execute-Benchmark Function
         run: |
