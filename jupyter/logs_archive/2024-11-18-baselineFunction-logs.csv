@@ -1,5 +1,5 @@
 count,timestamp,execution_id,log,retries,execution_time,benchmark_duration,download_duration,lr_duration
-0,2024-11-18T09:17:44.621435+00:00,e4iwfxbadlq1,Execution finished,0,350.0,,102,246
-1,2024-11-18T09:17:45.145440+00:00,wvuvdd9x3gpb,Execution finished,0,500.0,,189,308
-2,2024-11-18T09:17:55.144305+00:00,wvuvsxdi7weu,Execution finished,0,490.0,,180,307
-3,2024-11-18T09:17:55.778170+00:00,moxn6k4l6z77,Execution finished,0,494.0,,95,397
+0,2024-11-18T09:29:11.837298+00:00,fc3k86p3htxn,Execution finished,0,1023.0,,701,310
+1,2024-11-18T09:29:11.718368+00:00,9go03zhjankf,Execution finished,0,902.0,,598,297
+2,2024-11-18T09:29:22.685412+00:00,fm6ny1ftp4nw,Execution finished,0,925.0,,513,398
+3,2024-11-18T09:29:22.856366+00:00,nh8itp8d1wfs,Execution finished,0,981.0,,581,397

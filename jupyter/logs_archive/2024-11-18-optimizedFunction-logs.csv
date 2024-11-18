@@ -1,12 +1,16 @@
 count,timestamp,execution_id,log,retries,execution_time,benchmark_duration,download_duration,lr_duration
-0,2024-11-18T09:17:45.528546+00:00,fpkip33hgwxl,Crashing instance,0,1256.0,Benchmark passed: 4627,---,0
-1,2024-11-18T09:17:45.519844+00:00,z9kydkl62bli,Crashing instance,0,695.0,Benchmark passed: 5241,---,0
-2,2024-11-18T09:17:45.515203+00:00,d5q4idi2equr,Crashing instance,0,99.0,Benchmark passed: 5002,---,0
-3,2024-11-18T09:17:45.508509+00:00,4nlx9m56mj4r,Max retries reached,3,11.0,Benchmark passed: 6007,---,0
-4,2024-11-18T09:17:46.879619+00:00,4nlxuzmfhd2g,Crashing instance,0,1335.0,Benchmark passed: 4256,---,0
-5,2024-11-18T09:17:46.871784+00:00,iwlg169v3i5z,Execution finished,1,834.0,Benchmark passed: 3872,428,402
-6,2024-11-18T09:17:56.477124+00:00,xlbnzcruf0jx,Crashing instance,0,891.0,Benchmark passed: 4641,---,0
-7,2024-11-18T09:17:56.470225+00:00,iwlg1vrd50g4,Execution finished,1,455.0,Fast instance,62,390
-8,2024-11-18T09:17:58.708453+00:00,ih9wo8jblw16,Crashing instance,0,1788.0,Benchmark passed: 3941,---,0
-9,2024-11-18T09:17:58.699748+00:00,1nqdliq902qj,Crashing instance,0,1286.0,Benchmark passed: 4716,---,0
-10,2024-11-18T09:17:58.693204+00:00,yipsahrt6xhi,Execution finished,2,764.0,Benchmark passed: 3700,388,372
+0,2024-11-18T09:29:12.988846+00:00,4fq31hr5178q,Crashing instance,0,2175.0,BM not passed: 5052,---,0
+1,2024-11-18T09:29:13.251422+00:00,f7relpsxs44p,Crashing instance,0,2432.0,BM not passed: 5633,---,0
+2,2024-11-18T09:29:12.983034+00:00,l9i9q40zlsa6,Crashing instance,0,1766.0,BM not passed: 4235,---,0
+3,2024-11-18T09:29:13.243533+00:00,0r3kaxwijmzo,Crashing instance,0,1900.0,BM not passed: 5734,---,0
+4,2024-11-18T09:29:12.969799+00:00,nuyompwpdeag,Crashing instance,0,923.0,BM not passed: 3978,---,0
+5,2024-11-18T09:29:13.236664+00:00,boxbt8jrhwex,Crashing instance,0,1129.0,BM not passed: 4057,---,0
+6,2024-11-18T09:29:13.229930+00:00,1j0ys4wog9kk,Execution finished,3,789.0,BM passed: 3694,464,322
+7,2024-11-18T09:29:12.963372+00:00,p0e2tuje6mht,Max retries reached,3,90.0,BM not passed: 4168,---,0
+8,2024-11-18T09:29:23.828651+00:00,8grrwurxu7ay,Crashing instance,0,805.0,BM not passed: 4271,---,0
+9,2024-11-18T09:29:26.040895+00:00,d50sklch2vb3,Crashing instance,0,2715.0,BM not passed: 4039,---,0
+10,2024-11-18T09:29:23.821426+00:00,p0e2z8xylp5d,Crashing instance,0,443.0,BM not passed: 7336,---,0
+11,2024-11-18T09:29:23.807771+00:00,1j0yi4i1tbck,Execution finished,2,319.0,Fast instance,79,238
+12,2024-11-18T09:29:26.033746+00:00,k956f6blc5rm,Crashing instance,0,2006.0,BM not passed: 3945,---,0
+13,2024-11-18T09:29:26.019976+00:00,f10fstqyy8kj,Crashing instance,0,1529.0,BM not passed: 3973,---,0
+14,2024-11-18T09:29:26.013489+00:00,ezp98w6x846h,Execution finished,3,880.0,BM passed: 3678,436,396
