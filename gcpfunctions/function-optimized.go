@@ -20,7 +20,7 @@ const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/o
 const maxRetries = 3
 
 // med: 0.004192012 Seconds
-const benchmarkMaxDuration = 3880 * time.Microsecond // = 4.2 Milliseconds
+var benchmarkMaxDuration = 3880 * time.Microsecond // = 4.2 Milliseconds
 
 var benchmarkPassed = false
 
@@ -30,6 +30,18 @@ func init() {
 
 // Handler for the optimization function
 func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
+	// Extract maxBenchmark parameter
+	benchmarkMaxDurationParam := r.URL.Query().Get("maxBenchmarkDuration")
+
+	if benchmarkMaxDurationParam != "" {
+		parsedDuration, err := time.ParseDuration(benchmarkMaxDurationParam)
+		if err != nil {
+			fmt.Printf("Invalid maxBenchmark value: %v\n", err)
+		} else {
+			benchmarkMaxDuration = parsedDuration
+		}
+	}
+
 	// Decode req-body
 	var req model.Request
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && err.Error() != "EOF" {
@@ -88,9 +100,10 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
-		fmt.Println("Invoking new instance")
-		lib.InvokeNew(url, req)
-		// return
+		// Construct the URL with the maxBenchmark parameter
+		newInstanceURL := fmt.Sprintf("%s?maxBenchmarkDuration=%s", url, benchmarkMaxDuration.String())
+		lib.InvokeNew(newInstanceURL, req)
+		// After invoking new instance crash current slow instance
 		fmt.Println("Crashing instance")
 		os.Exit(0)
 	}
