@@ -9,7 +9,9 @@ END_MARKER_LOG = "=== END LOG ==="
 EXECUTION_FINISHED_MARKER = "Execution finished"
 MAX_RETRIES_MARKER = "Max retries reached"
 
-BENCHMARK_DURATION = "Benchmark passed"
+BENCHMARK_PASSED_DURATION = "BM passed"
+BENCHMARK_NOT_PASSED_DURATION = "BM not passed"
+
 DOWNLOAD_DURATION = "Download-duration"
 FAST_INSTANCE = "Fast instance"
 
@@ -61,8 +63,7 @@ def parse_func_logs(logs) -> list:
             if "Retries" in log.payload:
                 current_log["retries"] = int(log.payload.replace("Retries: ", ""))
                 continue
-            if BENCHMARK_DURATION in log.payload:
-                # current_log["benchmark_duration"] = log.payload.replace("Benchmark-duration: ", "") + " " + microsecond_symbol
+            if BENCHMARK_PASSED_DURATION in log.payload or BENCHMARK_NOT_PASSED_DURATION in log.payload:
                 current_log["benchmark_duration"] = log.payload
                 continue
             if FAST_INSTANCE in log.payload:
