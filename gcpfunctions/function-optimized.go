@@ -81,7 +81,8 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if benchmarkPassed {
-		wg.Wait() // Ensure download completes
+		// Ensure download completes
+		wg.Wait()
 		duration := time.Since(startTime)
 		fmt.Printf("Download-duration: %2.f\n", float64(duration)/float64(time.Millisecond))
 
