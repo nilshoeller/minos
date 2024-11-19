@@ -9,8 +9,8 @@ const totalDurationTrend = new Trend("total_duration");
 const reqCounter = new Counter("reqCounter");
 
 export const options = {
-  vus: 1,
-  duration: "120s",
+  vus: __ENV.VUS ? parseInt(__ENV.VUS) : 1,
+  duration: __ENV.DURATION || "60s",
   thresholds: {
     total_duration: ["avg < 0.06", "p(95) < 0.08"],
     reqCounter: ["count>=0"],

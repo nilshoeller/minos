@@ -31,5 +31,12 @@ func PermormBenchmarkReturnDuration() float64 {
 	// Measure how long the computation took
 	duration := time.Since(startTime)
 
+	// Print something
+	if (float64(duration) / float64(time.Microsecond)) > 3800 {
+		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Microsecond))
+	} else {
+		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Microsecond))
+	}
+
 	return float64(duration.Seconds())
 }
