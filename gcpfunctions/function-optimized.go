@@ -17,7 +17,7 @@ import (
 
 const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction"
 
-const maxRetries = 3
+const maxRetries = 5
 
 // med: 0.004192012 Seconds
 var benchmarkMaxDuration = 3880 * time.Microsecond // = 4.2 Milliseconds
