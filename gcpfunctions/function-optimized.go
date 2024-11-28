@@ -68,6 +68,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	// Create a wait group
 	wg := new(sync.WaitGroup)
 	wg.Add(1)
+
 	// currently no error handling because of goroutine, maybe channels would work
 	startTime := time.Now()
 	go db.DownloadFileWaitGroupWrapper(bucketName, objectName, destinationFileName, wg)

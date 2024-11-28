@@ -40,6 +40,7 @@ func BaselineFunction(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 
 	startTime := time.Now()
+
 	// Download from cloud storage
 	if err := db.DownloadFile(bucketName, objectName, destinationFileName); err != nil {
 		fmt.Println("downloading file: ", err)
