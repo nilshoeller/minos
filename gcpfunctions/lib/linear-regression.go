@@ -97,3 +97,13 @@ func ReadCsvAndPerformLR(destFileName string) (float64, float64, float64) {
 
 	return maxTemp, minTemp, meanTemp
 }
+
+func PerformTask(destFileName string, amount int) (float64, float64, float64) {
+	maxTemp, minTemp, meanTemp := 0.0, 0.0, 0.0
+
+	for i := 0; i < amount; i++ {
+		maxTemp, minTemp, meanTemp = ReadCsvAndPerformLR(destFileName)
+	}
+
+	return maxTemp, minTemp, meanTemp
+}

@@ -88,9 +88,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 
 		startTimeLR := time.Now()
 
-		maxTemp, minTemp, meanTemp := lib.ReadCsvAndPerformLR(destinationFileName)
-		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
-		maxTemp, minTemp, meanTemp = lib.ReadCsvAndPerformLR(destinationFileName)
+		maxTemp, minTemp, meanTemp := lib.PerformTask(destinationFileName, taskExecutionAmount)
 
 		durationLR := time.Since(startTimeLR)
 		fmt.Printf("LR-duration: %2.f\n", float64(durationLR)/float64(time.Millisecond))
