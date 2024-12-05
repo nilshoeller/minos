@@ -36,7 +36,7 @@ export default function () {
     reqCounter.add(1);
   }
 
-  sleep(5);
+  sleep(1);
 }
 
 export function handleSummary(data) {
