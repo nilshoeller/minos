@@ -32,7 +32,7 @@ def get_cloud_function_logs(function_type: CloudFunction, project_id: str, exec_
     )
     
     # Pagination with page_size
-    page_size = 100  # Adjust to a reasonable value for your quota
+    page_size = 1000  # Adjust to a reasonable value for your quota
     entries = client.list_entries(filter_=logger_filter, order_by=ASCENDING, page_size=page_size)
 
     print(f"Analyzing logs for Cloud Function: {function_type.value}")
