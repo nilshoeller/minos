@@ -15,12 +15,7 @@ import (
 	"github.com/nilshoeller/bsc-thesis-implementation/gcpfunctions/model"
 )
 
-const url = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction"
-
-const maxRetries = 3
-
-// med: 0.004192012 Seconds
-var benchmarkMaxDuration = 3880 * time.Microsecond // = 4.2 Milliseconds
+var benchmarkMaxDuration = 3800 * time.Microsecond // = 3.8 Milliseconds
 
 var benchmarkPassed = false
 
@@ -100,7 +95,7 @@ func OptimizedFunction(w http.ResponseWriter, r *http.Request) {
 	if req.RetryCount < maxRetries {
 		req.RetryCount++
 		// Construct the URL with the maxBenchmark parameter
-		newInstanceURL := fmt.Sprintf("%s?maxBenchmarkDuration=%s", url, benchmarkMaxDuration.String())
+		newInstanceURL := fmt.Sprintf("%s?maxBenchmarkDuration=%s", retry_url, benchmarkMaxDuration.String())
 		lib.InvokeNew(newInstanceURL, req)
 		// After invoking new instance crash current slow instance
 		fmt.Println("Crashing instance")
