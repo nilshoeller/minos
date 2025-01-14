@@ -2,6 +2,8 @@ from google.cloud import logging # type: ignore
 from google.cloud.logging import ASCENDING # type: ignore
 # from google.cloud.logging import DESCENDING # type: ignore
 
+import os
+
 from log_utils import parse_logs
 from log_utils import csv_log_saver
 from enum import Enum
@@ -38,6 +40,6 @@ def get_cloud_function_logs(function_type: CloudFunction, project_id: str, exec_
     print(f"Analyzing logs for Cloud Function: {function_type.value}")
     return parse_logs.parse_func_logs(entries)
 
-def fetch_logs_and_save(function_type: CloudFunction, project_id: str, minutes: int):
+def fetch_logs_and_save(function_type: CloudFunction, project_id: str, minutes: int, execution_folder_path: str):
     fetched_list = get_cloud_function_logs(function_type, project_id, minutes)
-    csv_log_saver.save_to_csv(function_type.value, fetched_list)
+    csv_log_saver.save_to_csv(function_type.value, fetched_list, execution_folder_path)

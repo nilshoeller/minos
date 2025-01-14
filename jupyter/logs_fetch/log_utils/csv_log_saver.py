@@ -3,16 +3,16 @@ import csv
 from datetime import datetime
 
 
-def save_to_csv(function_name, logs, folder_name='./logs_archive'):
+def save_to_csv(function_name, logs, folder_path):
     # Create a folder to store the CSV file if it doesn't exist
-    os.makedirs(folder_name, exist_ok=True)
+    os.makedirs(folder_path, exist_ok=True)
     
     # Get the current date for the file name
     current_date = datetime.now().strftime("%Y-%m-%d")
     file_name = f'{current_date}-{function_name}-logs.csv'  # Include the date in the file name
 
     # Define the full path for the CSV file
-    csv_file_path = os.path.join(folder_name, file_name)
+    csv_file_path = os.path.join(folder_path, file_name)
 
     # Get the keys for the CSV header from the first log entry
     if logs:
