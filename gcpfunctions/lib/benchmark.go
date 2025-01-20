@@ -16,9 +16,9 @@ func PerformBenchmark(maxDuration time.Duration, benchmarkPassed *bool) {
 
 	if duration < maxDuration {
 		*benchmarkPassed = true
-		fmt.Printf("BM PASSED: %2.f\n", float64(duration)/float64(time.Microsecond))
+		fmt.Printf("BM PASSED: %2.f\n", float64(duration)/float64(time.Millisecond))
 	} else {
-		fmt.Printf("BM: %2.f > %2.f\n", float64(duration)/float64(time.Microsecond), float64(maxDuration)/float64(time.Microsecond))
+		fmt.Printf("BM: %2.f > %2.f\n", float64(duration)/float64(time.Millisecond), float64(maxDuration)/float64(time.Millisecond))
 	}
 }
 
@@ -32,10 +32,10 @@ func PermormBenchmarkReturnDuration() float64 {
 	duration := time.Since(startTime)
 
 	// Print something
-	if (float64(duration) / float64(time.Microsecond)) > 3800 {
-		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Microsecond))
+	if (float64(duration) / float64(time.Millisecond)) > 3800 {
+		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Millisecond))
 	} else {
-		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Microsecond))
+		fmt.Printf("BM: %2.f\n", float64(duration)/float64(time.Millisecond))
 	}
 
 	return float64(duration.Seconds())
