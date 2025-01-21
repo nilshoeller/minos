@@ -5,7 +5,7 @@ import "math/rand"
 // performMatrixMultiplication performs a basic matrix multiplication.
 // For demonstration purposes, it multiplies two 100x100 matrices.
 func performMatrixMultiplication() {
-	size := 150
+	size := 200
 	a := make([][]int, size)
 	b := make([][]int, size)
 	result := make([][]int, size)

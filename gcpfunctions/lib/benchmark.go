@@ -17,10 +17,10 @@ func PerformBenchmark(maxDuration time.Duration, benchmarkPassed *bool) {
 	if duration < maxDuration {
 		*benchmarkPassed = true
 		// fmt.Printf("BM PASSED: %2.f\n", float64(duration)/float64(time.Microsecond))
-		fmt.Printf("BM PASSED: %.2f\n", float64(duration.Microseconds()/1000))
+		fmt.Printf("BM PASSED: %.2f\n", float64(duration.Microseconds())/1000)
 	} else {
 		// fmt.Printf("BM: %2.f > %2.f\n", float64(duration)/float64(time.Microsecond), float64(maxDuration)/float64(time.Microsecond))
-		fmt.Printf("BM: %.2f > %.2f\n", float64(duration.Microseconds()/1000), float64(maxDuration.Microseconds()/1000))
+		fmt.Printf("BM: %.2f > %.2f\n", float64(duration.Microseconds())/1000, float64(maxDuration.Microseconds())/1000)
 	}
 }
 
