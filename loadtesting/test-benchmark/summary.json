@@ -1,1 +1,26 @@
-{"reqCounter":{"thresholds":{"count>=0":{"ok":true}},"type":"counter","contains":"default","values":{"count":558,"rate":9.140594880726294}},"total_duration":{"type":"trend","contains":"default","values":{"p(95)":0.009733825199999992,"avg":0.005514975342293911,"min":0.003444083,"med":0.004186261,"max":0.088832143,"p(60)":0.004284799,"p(65)":0.00437919025,"p(90)":0.0051400649},"thresholds":{"avg < 0.06":{"ok":true},"p(95) < 0.08":{"ok":true}}}}
+{
+  "reqCounter": {
+    "thresholds": { "count>=0": { "ok": true } },
+    "type": "counter",
+    "contains": "default",
+    "values": { "count": 558, "rate": 9.140594880726294 }
+  },
+  "total_duration": {
+    "type": "trend",
+    "contains": "default",
+    "values": {
+      "p(95)": 0.009733825199999992,
+      "avg": 0.005514975342293911,
+      "min": 0.003444083,
+      "med": 0.004186261,
+      "max": 0.088832143,
+      "p(60)": 0.004284799,
+      "p(65)": 0.00437919025,
+      "p(90)": 0.0051400649
+    },
+    "thresholds": {
+      "avg < 0.06": { "ok": true },
+      "p(95) < 0.08": { "ok": true }
+    }
+  }
+}
