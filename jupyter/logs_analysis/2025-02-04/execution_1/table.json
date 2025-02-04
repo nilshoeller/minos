@@ -1,0 +1,20 @@
+[
+    {
+        "Metric":"Function Execution Time",
+        "Baseline":1945.5,
+        "Optimized":1776.0,
+        "% Improvement":8.7124132614
+    },
+    {
+        "Metric":"Download Duration",
+        "Baseline":151.0,
+        "Optimized":138.0,
+        "% Improvement":8.6092715232
+    },
+    {
+        "Metric":"Linear Regression Execution Time",
+        "Baseline":1800.0,
+        "Optimized":1607.0,
+        "% Improvement":10.7222222222
+    }
+]
