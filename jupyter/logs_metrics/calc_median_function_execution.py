@@ -4,7 +4,7 @@ from datetime import datetime
 def calculate_median_function_execution(func_name: str, execution_count: int) -> float:
     today_date = datetime.now().strftime("%Y-%m-%d")
     # Load CSV data into a DataFrame
-    data = pd.read_csv(f'./logs_archive/{today_date}/execution_{execution_count}/{today_date}-{func_name}-logs.csv')
+    data = pd.read_csv(f'./logs_analysis/{today_date}/execution_{execution_count}/{today_date}-{func_name}-logs.csv')
     # Calculate the mean of the 'functionexectime' column
     median_execution_time = data['execution_time'].median()
 

@@ -4,7 +4,7 @@ from datetime import datetime
 def calculate_median_lr_duration(func_name: str, execution_count: int) -> float:
     today_date = datetime.now().strftime("%Y-%m-%d")
     # Load CSV data into a DataFrame
-    data = pd.read_csv(f'./logs_archive/{today_date}/execution_{execution_count}/{today_date}-{func_name}-logs.csv')
+    data = pd.read_csv(f'./logs_analysis/{today_date}/execution_{execution_count}/{today_date}-{func_name}-logs.csv')
     
     # Convert 'lr_duration_duration' to numeric, setting errors='coerce' to handle non-numeric values
     data = data[data['lr_duration'] != 0]
