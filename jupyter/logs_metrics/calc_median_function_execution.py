@@ -30,3 +30,13 @@ def return_median_function_execution_OPTIMIZED(execution_count: int):
 
 def return_median_function_execution_BASELINE(execution_count: int):
     return calculate_median_function_execution("baselineFunction", execution_count)
+
+# func_name = "baselineFunction" | "optimizedFunction"
+def return_median_function_execution(date: str, execution_count: int, func_name: str):
+    # Load CSV data into a DataFrame
+    data = pd.read_csv(f'./logs_analysis/{date}/execution_{execution_count}/{date}-{func_name}-logs.csv')
+    
+    # Calculate the mean of the 'functionexectime' column
+    median_execution_time = data['execution_time'].median()
+    
+    return median_execution_time

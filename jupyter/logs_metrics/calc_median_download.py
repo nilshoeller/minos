@@ -35,3 +35,17 @@ def return_median_download_OPTIMIZED(execution_count: int):
 
 def return_median_download_BASELINE(execution_count: int):
     return calculate_median_download("baselineFunction", execution_count)
+
+# func_name = "baselineFunction" | "optimizedFunction"
+def return_median_download(date: str, execution_count: int, func_name: str):
+    # Load CSV data into a DataFrame
+    data = pd.read_csv(f'./logs_analysis/{date}/execution_{execution_count}/{date}-{func_name}-logs.csv')
+    
+    # Convert 'download_duration' to numeric, setting errors='coerce' to handle non-numeric values
+    data = data[data['download_duration'] != "---"]
+    data['download_duration'] = data['download_duration'].astype(int)
+
+    # Calculate the median of the 'download_duration' column
+    median_download_time = data['download_duration'].median()
+
+    return median_download_time
