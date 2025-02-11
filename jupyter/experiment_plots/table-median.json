@@ -1,0 +1,14 @@
+[
+    {
+        "Metric":"Function Execution Time",
+        "Median % Improvement":4.9719530852
+    },
+    {
+        "Metric":"Download Duration",
+        "Median % Improvement":1.7964071856
+    },
+    {
+        "Metric":"Linear Regression Execution Time",
+        "Median % Improvement":5.6958308867
+    }
+]
