@@ -1,0 +1,14 @@
+[
+    {
+        "Metric":"Function Execution Time",
+        "Average % Improvement":5.2395653702
+    },
+    {
+        "Metric":"Download Duration",
+        "Average % Improvement":2.2716925725
+    },
+    {
+        "Metric":"Linear Regression Execution Time",
+        "Average % Improvement":5.5903127751
+    }
+]
