@@ -11,5 +11,5 @@ const (
 const (
 	retry_url           = "https://europe-west3-bsc-thesis-implementation.cloudfunctions.net/optimizedFunction"
 	maxRetries          = 10
-	taskExecutionAmount = 10 // how often should we perform LR (for longer execution)
+	taskExecutionAmount = 10
 )
