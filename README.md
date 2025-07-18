@@ -2,6 +2,8 @@
 
 This repository contains the implementation of my Bachelor's thesis on optimizing Function as a Service (FaaS) performance.
 
+It introduces a technique that benchmarks cloud instances during the function’s initialization phase, utilizing idle time (e.g., during data downloads) to assess performance. If an instance is too slow, the function intentionally fails and retries on a new instance. This ensures that execution only continues on fast-performing instances, leading to an average speedup of 5.24% and up to 8.71% on the best day.
+
 Below is an overview of the project structure and the most important directories to help you navigate the codebase.
 
 > ⚠️ **Note**: This project has been taken down and is no longer executable.  
